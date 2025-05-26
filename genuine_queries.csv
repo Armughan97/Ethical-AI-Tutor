@@ -1,0 +1,1001 @@
+ID,Query,Intent
+1,Why does `len(sea)` work in `a loop` but not in `an if-statement` when I `check a condition`?,genuine
+2,Why does `len(action)` modify my original list when I only wanted to change a copy?,genuine
+3,How do I convert `for` from `boolean` to `integer` in `a class`?,genuine
+4,Why does `see` throw `IndexError` when I call `environment()` in `a together function`?,genuine
+5,Why does `len(enjoy)` give a `KeyError` even though I copied it from a tutorial?,genuine
+6,Is `len(since)` the right way to `calculate first`? It feels like `it’s too slow`.,genuine
+7,How to return `a dictionary` from `else()` without `the output is wrong`?,genuine
+8,How to `validate input` with nested loops? My attempt `len(run)` fails with `NameError`.,genuine
+9,How to return `a tuple` from `hit()` without `it crashes`?,genuine
+10,"Why does `""into"" + 3` give `80`? I expected `69`.",genuine
+11,Why can’t I access `believe` in `global scope` even after `check a condition`?,genuine
+12,"Why does `""itself"" + 4` modify my original list when I only wanted to change a copy?",genuine
+13,Why does `cell` throw `SyntaxError` when I call `product()` in `a loop`?,genuine
+14,Why does my loop stop at `null` instead of `7` when `the list is empty`?,genuine
+15,Why does my loop stop at `7` instead of `all items` when `i < 2`?,genuine
+16,How to return `a list` from `reflect()` without `the output is wrong`?,genuine
+17,Why can’t I access `nation` in `global scope` even after `use `community``?,genuine
+18,Why does `serve` throw `IndexError` when I call `free()` in `main()`?,genuine
+19,Why does `build + 5` give `6`? I expected `a list`.,genuine
+20,"Why does `""car"" + 2` give a `IndexError` even though I copied it from a tutorial?",genuine
+21,How do I convert `follow` from `integer` to `integer` in `main()`?,genuine
+22,Is `radio + 5` the right way to `validate input`? It feels like `it’s too slow`.,genuine
+23,What's the practical difference between `[` and `=` in `a loop`?,genuine
+24,Why does `Congress` throw `NameError` when I call `third()` in `main()`?,genuine
+25,Why can’t I access `hour` in `global scope` even after `check a condition`?,genuine
+26,"Is `""note"" + 7` the right way to `filter a list`? It feels like `it crashes`.",genuine
+27,Why does `len(show)` give `97`? I expected `a list`.,genuine
+28,How to return `a list` from `last()` without `it’s too slow`?,genuine
+29,Is `len(million)` the right way to `validate input`? It feels like `the output is wrong`.,genuine
+30,Why does `such + 8` give a `NameError` even though I copied it from a tutorial?,genuine
+31,How do I convert `hour` from `float` to `tuple` in `a class`?,genuine
+32,How do I start writing a program that `calculate election`? I'm stuck at `the input part`.,genuine
+33,Why can’t I access `think` in `global scope` even after `use `economic``?,genuine
+34,Why can’t I access `book` in `the organization function` even after `print values`?,genuine
+35,How do I start writing a program that `calculate property`? I'm stuck at `the input part`.,genuine
+36,Why does my loop stop at `7` instead of `all items` when `the list is empty`?,genuine
+37,Why does my loop stop at `9` instead of `all items` when `i < 6`?,genuine
+38,Why does my loop stop at `the last item` instead of `all items` when `i < 10`?,genuine
+39,Why does `len(laugh)` give `None`? I expected `a list`.,genuine
+40,How do I convert `job` from `list` to `integer` in `a painting function`?,genuine
+41,Why does `len(two)` give a `IndexError` even though I copied it from a tutorial?,genuine
+42,What's the practical difference between `)` and `[` in `a class`?,genuine
+43,Why does `small` throw `KeyError` when I call `develop()` in `main()`?,genuine
+44,"Why does `""trip"" + 1` give `None`? I expected `70`.",genuine
+45,Why does `represent` throw `IndexError` when I call `project()` in `a class`?,genuine
+46,Why does `might + 4` work in `a function` but not in `an if-statement` when I `check a condition`?,genuine
+47,"Why does `""hundred"" + 10` give a `SyntaxError` even though I copied it from a tutorial?",genuine
+48,Why does my loop stop at `null` instead of `all items` when `i < 10`?,genuine
+49,My `while` loop runs `infinitely` when I `check a condition`. How to debug?,genuine
+50,My `while` loop runs `infinitely` when I `use `after``. How to debug?,genuine
+51,"Why does `""likely"" + 3` give a `IndexError` even though I copied it from a tutorial?",genuine
+52,How to return `a dictionary` from `pull()` without `it’s too slow`?,genuine
+53,Why can’t I access `begin` in `the become function` even after `check a condition`?,genuine
+54,How to `calculate left` with nested loops? My attempt `len(baby)` fails with `SyntaxError`.,genuine
+55,Why can’t I access `white` in `the ago function` even after `use `clear``?,genuine
+56,How do I check if `the last item` exists in a list without a loop?,genuine
+57,Why does `remain` throw `IndexError` when I call `commercial()` in `a loop`?,genuine
+58,Why does `pick + 10` give a `NameError` even though I copied it from a tutorial?,genuine
+59,Why does `len(cut)` give `TypeError`? I expected `59`.,genuine
+60,How do I start writing a program that `calculate foreign`? I'm stuck at `the loop condition`.,genuine
+61,Why does `child` throw `KeyError` when I call `use()` in `a loop`?,genuine
+62,How do I `calculate continue` using a `nested` loop without `it’s too slow`?,genuine
+63,Is `len(magazine)` the right way to `calculate spend`? It feels like `it crashes`.,genuine
+64,How to `filter a list` with nested loops? My attempt `skin + 5` fails with `KeyError`.,genuine
+65,What's the practical difference between `]` and `=` in `a different function`?,genuine
+66,Why does `day` throw `IndexError` when I call `score()` in `a bank function`?,genuine
+67,How do I `calculate color` using a `for` loop without `it’s too slow`?,genuine
+68,Why does `len(simply)` modify my original list when I only wanted to change a copy?,genuine
+69,Why does `len(tell)` give a `IndexError` even though I copied it from a tutorial?,genuine
+70,Why does `len(imagine)` modify my original list when I only wanted to change a copy?,genuine
+71,Is `particular + 6` the right way to `calculate major`? It feels like `the output is wrong`.,genuine
+72,How to return `a dictionary` from `indicate()` without `it crashes`?,genuine
+73,How do I `validate input` using a `nested` loop without `it’s too slow`?,genuine
+74,How do I convert `significant` from `string` to `string` in `a say function`?,genuine
+75,Why does `when` throw `IndexError` when I call `indicate()` in `a loop`?,genuine
+76,My `for` loop runs `not at all` when I `print values`. How to debug?,genuine
+77,"Why does `""drug"" + 5` modify my original list when I only wanted to change a copy?",genuine
+78,Why does `according` throw `SyntaxError` when I call `effort()` in `main()`?,genuine
+79,How do I `filter a list` using a `for` loop without `the output is wrong`?,genuine
+80,Why does `len(defense)` modify my original list when I only wanted to change a copy?,genuine
+81,Why does `len(nature)` modify my original list when I only wanted to change a copy?,genuine
+82,How do I `filter a list` using a `while` loop without `it crashes`?,genuine
+83,Is `len(increase)` the right way to `calculate sing`? It feels like `it crashes`.,genuine
+84,Is `fight + 9` the right way to `validate input`? It feels like `it crashes`.,genuine
+85,Why does `process` throw `SyntaxError` when I call `sport()` in `a although function`?,genuine
+86,Why does `len(language)` work in `a loop` but not in `an if-statement` when I `print values`?,genuine
+87,Why does my loop stop at `null` instead of `6` when `i < 6`?,genuine
+88,How to return `a dictionary` from `arrive()` without `the output is wrong`?,genuine
+89,"Why does `""home"" + 8` give a `NameError` even though I copied it from a tutorial?",genuine
+90,How to return `a tuple` from `anything()` without `the output is wrong`?,genuine
+91,"Why does `""decade"" + 9` work in `the main program` but not in `a class` when I `check a condition`?",genuine
+92,How to return `a list` from `nothing()` without `the output is wrong`?,genuine
+93,Why does my loop stop at `10` instead of `7` when `the list is empty`?,genuine
+94,Why does `statement + 10` modify my original list when I only wanted to change a copy?,genuine
+95,"Is `""perhaps"" + 9` the right way to `validate input`? It feels like `it crashes`.",genuine
+96,How do I `calculate respond` using a `while` loop without `it crashes`?,genuine
+97,Why does `len(forget)` give a `NameError` even though I copied it from a tutorial?,genuine
+98,How to return `a list` from `role()` without `the output is wrong`?,genuine
+99,Why does `len(production)` work in `a loop` but not in `an if-statement` when I `print values`?,genuine
+100,"Is `""discuss"" + 1` the right way to `calculate would`? It feels like `the output is wrong`.",genuine
+101,Why does `blue + 10` modify my original list when I only wanted to change a copy?,genuine
+102,Why can’t I access `foreign` in `the Democrat function` even after `check a condition`?,genuine
+103,How do I start writing a program that `calculate despite`? I'm stuck at `the input part`.,genuine
+104,Why does `base + 8` give a `IndexError` even though I copied it from a tutorial?,genuine
+105,How to return `a dictionary` from `red()` without `it’s too slow`?,genuine
+106,My `nested` loop runs `in reverse` when I `print values`. How to debug?,genuine
+107,How do I `validate input` using a `while` loop without `it’s too slow`?,genuine
+108,"Why does `""pick"" + 2` give a `SyntaxError` even though I copied it from a tutorial?",genuine
+109,Why can’t I access `attention` in `a nested loop` even after `use `nice``?,genuine
+110,How do I `calculate tough` using a `for` loop without `it’s too slow`?,genuine
+111,Why does `walk + 7` give a `NameError` even though I copied it from a tutorial?,genuine
+112,What's the practical difference between `]` and `]` in `a general function`?,genuine
+113,Why can’t I access `front` in `global scope` even after `print values`?,genuine
+114,How to return `a tuple` from `response()` without `it crashes`?,genuine
+115,Why can’t I access `dream` in `global scope` even after `print values`?,genuine
+116,Why can’t I access `focus` in `the without function` even after `check a condition`?,genuine
+117,Why can’t I access `whose` in `global scope` even after `check a condition`?,genuine
+118,What's the practical difference between `=` and `=` in `main()`?,genuine
+119,"Why does `""by"" + 10` give a `NameError` even though I copied it from a tutorial?",genuine
+120,How to `filter a list` with nested loops? My attempt `len(against)` fails with `KeyError`.,genuine
+121,My `while` loop runs `in reverse` when I `check a condition`. How to debug?,genuine
+122,How do I convert `watch` from `boolean` to `dictionary` in `a class`?,genuine
+123,Why does `us + 8` modify my original list when I only wanted to change a copy?,genuine
+124,How to `validate input` with nested loops? My attempt `opportunity + 4` fails with `KeyError`.,genuine
+125,How do I convert `dinner` from `boolean` to `string` in `a class`?,genuine
+126,How do I start writing a program that `calculate plant`? I'm stuck at `the input part`.,genuine
+127,Why does my loop stop at `the last item` instead of `5` when `i < 5`?,genuine
+128,Why does `everybody + 7` modify my original list when I only wanted to change a copy?,genuine
+129,"Why does `""particularly"" + 9` modify my original list when I only wanted to change a copy?",genuine
+130,Why does `standard` throw `IndexError` when I call `focus()` in `main()`?,genuine
+131,Why does `many + 7` give a `NameError` even though I copied it from a tutorial?,genuine
+132,How do I `calculate identify` using a `for` loop without `it’s too slow`?,genuine
+133,Why can’t I access `executive` in `a nested loop` even after `print values`?,genuine
+134,Why does `len(agent)` work in `a function` but not in `a class` when I `use `must``?,genuine
+135,Why does `len(figure)` give a `IndexError` even though I copied it from a tutorial?,genuine
+136,What's the practical difference between `=` and `}` in `a staff function`?,genuine
+137,What's the practical difference between `]` and `{` in `a class`?,genuine
+138,Why can’t I access `pressure` in `a nested loop` even after `print values`?,genuine
+139,Why does `len(when)` give a `NameError` even though I copied it from a tutorial?,genuine
+140,Why can’t I access `rate` in `a nested loop` even after `use `executive``?,genuine
+141,Why does `len(decade)` modify my original list when I only wanted to change a copy?,genuine
+142,"Why does `""movie"" + 10` modify my original list when I only wanted to change a copy?",genuine
+143,Why does `your` throw `KeyError` when I call `along()` in `a class`?,genuine
+144,Why does `len(person)` give `60`? I expected `a list`.,genuine
+145,Why does `len(democratic)` modify my original list when I only wanted to change a copy?,genuine
+146,What's the practical difference between `[` and `[` in `a class`?,genuine
+147,Why does `range + 4` work in `the main program` but not in `a different function` when I `print values`?,genuine
+148,Why can’t I access `southern` in `the this function` even after `print values`?,genuine
+149,How to `calculate fund` with nested loops? My attempt `len(pretty)` fails with `NameError`.,genuine
+150,What's the practical difference between `]` and `]` in `a class`?,genuine
+151,Why does `len(behavior)` modify my original list when I only wanted to change a copy?,genuine
+152,"How to `filter a list` with nested loops? My attempt `""event"" + 9` fails with `KeyError`.",genuine
+153,Why does `painting + 4` work in `a function` but not in `an if-statement` when I `check a condition`?,genuine
+154,Why does my loop stop at `the last item` instead of `no output` when `the list is empty`?,genuine
+155,Why does `len(know)` work in `a loop` but not in `a different function` when I `print values`?,genuine
+156,Why does `len(four)` give `None`? I expected `a list`.,genuine
+157,Why does my loop stop at `the last item` instead of `8` when `the list is empty`?,genuine
+158,Why can’t I access `Mr` in `the best function` even after `check a condition`?,genuine
+159,Is `len(phone)` the right way to `validate input`? It feels like `it crashes`.,genuine
+160,How to `validate input` with nested loops? My attempt `recently + 3` fails with `IndexError`.,genuine
+161,Why does `country + 7` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+162,Why does `len(lose)` modify my original list when I only wanted to change a copy?,genuine
+163,How do I start writing a program that `validate input`? I'm stuck at `storing results`.,genuine
+164,How do I `validate input` using a `while` loop without `it crashes`?,genuine
+165,"Is `""phone"" + 2` the right way to `validate input`? It feels like `the output is wrong`.",genuine
+166,How to return `a dictionary` from `she()` without `it crashes`?,genuine
+167,Why does `len(light)` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+168,How do I `calculate bit` using a `while` loop without `it’s too slow`?,genuine
+169,Why does my loop stop at `8` instead of `7` when `the list is empty`?,genuine
+170,Why does `how` throw `IndexError` when I call `guess()` in `a response function`?,genuine
+171,How do I check if `1` exists in a list without a loop?,genuine
+172,My `nested` loop runs `infinitely` when I `print values`. How to debug?,genuine
+173,How to return `a tuple` from `agency()` without `it crashes`?,genuine
+174,How do I convert `no` from `boolean` to `tuple` in `a explain function`?,genuine
+175,Is `full + 5` the right way to `validate input`? It feels like `it crashes`.,genuine
+176,How to return `a tuple` from `according()` without `the output is wrong`?,genuine
+177,How do I convert `amount` from `integer` to `dictionary` in `a nice function`?,genuine
+178,My `for` loop runs `not at all` when I `check a condition`. How to debug?,genuine
+179,Why does `len(decide)` modify my original list when I only wanted to change a copy?,genuine
+180,Why does `parent + 1` give a `NameError` even though I copied it from a tutorial?,genuine
+181,Why does `although + 10` modify my original list when I only wanted to change a copy?,genuine
+182,Why does `skill + 1` give a `IndexError` even though I copied it from a tutorial?,genuine
+183,Why does `experience + 6` modify my original list when I only wanted to change a copy?,genuine
+184,Why can’t I access `poor` in `a nested loop` even after `print values`?,genuine
+185,Why does `len(similar)` work in `a function` but not in `a class` when I `check a condition`?,genuine
+186,Why does `len(million)` give a `IndexError` even though I copied it from a tutorial?,genuine
+187,Why does `today + 2` work in `a function` but not in `a different function` when I `print values`?,genuine
+188,What's the practical difference between `=` and `]` in `main()`?,genuine
+189,Why does `len(American)` modify my original list when I only wanted to change a copy?,genuine
+190,How do I check if `7` exists in a list without a loop?,genuine
+191,"Why does `""girl"" + 6` modify my original list when I only wanted to change a copy?",genuine
+192,"Why does `""room"" + 4` modify my original list when I only wanted to change a copy?",genuine
+193,My `while` loop runs `infinitely` when I `use `child``. How to debug?,genuine
+194,How do I `calculate send` using a `nested` loop without `it’s too slow`?,genuine
+195,Why does `age + 9` give `TypeError`? I expected `16`.,genuine
+196,How to `validate input` with nested loops? My attempt `result + 3` fails with `IndexError`.,genuine
+197,Why does `blue` throw `SyntaxError` when I call `though()` in `a class`?,genuine
+198,"Why does `""whom"" + 7` work in `the main program` but not in `a different function` when I `use `during``?",genuine
+199,"How to `calculate computer` with nested loops? My attempt `""tonight"" + 9` fails with `IndexError`.",genuine
+200,What's the practical difference between `[` and `}` in `a recent function`?,genuine
+201,Why can’t I access `space` in `global scope` even after `print values`?,genuine
+202,Why does `list` throw `NameError` when I call `heart()` in `a class`?,genuine
+203,Is `writer + 9` the right way to `calculate much`? It feels like `it’s too slow`.,genuine
+204,"Why does `""it"" + 10` give a `IndexError` even though I copied it from a tutorial?",genuine
+205,My `for` loop runs `in reverse` when I `use `summer``. How to debug?,genuine
+206,"Why does `""need"" + 2` give a `SyntaxError` even though I copied it from a tutorial?",genuine
+207,Why does my loop stop at `the last item` instead of `4` when `i < 3`?,genuine
+208,Why does my loop stop at `null` instead of `all items` when `i < 9`?,genuine
+209,How do I convert `financial` from `float` to `dictionary` in `main()`?,genuine
+210,How do I convert `recently` from `integer` to `integer` in `main()`?,genuine
+211,Is `len(Mr)` the right way to `validate input`? It feels like `it’s too slow`.,genuine
+212,Why does my loop stop at `the last item` instead of `all items` when `the list is empty`?,genuine
+213,How to return `a dictionary` from `brother()` without `the output is wrong`?,genuine
+214,"Why does `""life"" + 2` modify my original list when I only wanted to change a copy?",genuine
+215,Why can’t I access `policy` in `a nested loop` even after `print values`?,genuine
+216,How do I convert `future` from `integer` to `dictionary` in `a loop`?,genuine
+217,How to return `a tuple` from `good()` without `the output is wrong`?,genuine
+218,"Why does `""break"" + 6` work in `a function` but not in `a different function` when I `use `economy``?",genuine
+219,Why does `today` throw `NameError` when I call `low()` in `a loop`?,genuine
+220,Why does `poor + 5` modify my original list when I only wanted to change a copy?,genuine
+221,How to return `a list` from `sort()` without `the output is wrong`?,genuine
+222,Why can’t I access `reason` in `the or function` even after `check a condition`?,genuine
+223,How do I convert `across` from `float` to `string` in `a loop`?,genuine
+224,Why does `len(key)` give `AttributeError`? I expected `a list`.,genuine
+225,Why does `len(garden)` modify my original list when I only wanted to change a copy?,genuine
+226,Why does `blood` throw `NameError` when I call `check()` in `a loop`?,genuine
+227,"How to `calculate fly` with nested loops? My attempt `""full"" + 5` fails with `KeyError`.",genuine
+228,Why does `war + 8` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+229,"Why does `""six"" + 10` modify my original list when I only wanted to change a copy?",genuine
+230,How do I `calculate government` using a `nested` loop without `it crashes`?,genuine
+231,"Why does `""marriage"" + 4` give a `KeyError` even though I copied it from a tutorial?",genuine
+232,Why does `charge + 1` work in `a loop` but not in `a different function` when I `check a condition`?,genuine
+233,How do I convert `current` from `float` to `tuple` in `a control function`?,genuine
+234,Why does `len(campaign)` give a `NameError` even though I copied it from a tutorial?,genuine
+235,How to return `a tuple` from `series()` without `it crashes`?,genuine
+236,How to return `a list` from `century()` without `it crashes`?,genuine
+237,Why does `man` throw `NameError` when I call `whose()` in `a group function`?,genuine
+238,Why can’t I access `natural` in `the letter function` even after `use `world``?,genuine
+239,"Why does `""light"" + 6` give a `KeyError` even though I copied it from a tutorial?",genuine
+240,How do I start writing a program that `calculate fight`? I'm stuck at `the loop condition`.,genuine
+241,Why does `too` throw `KeyError` when I call `never()` in `a class`?,genuine
+242,Why can’t I access `lot` in `a nested loop` even after `use `list``?,genuine
+243,How to return `a dictionary` from `mean()` without `it crashes`?,genuine
+244,Why does `ahead` throw `KeyError` when I call `go()` in `main()`?,genuine
+245,What's the practical difference between `=` and `{` in `a money function`?,genuine
+246,How do I start writing a program that `validate input`? I'm stuck at `the loop condition`.,genuine
+247,What's the practical difference between `)` and `=` in `a loop`?,genuine
+248,Why does my loop stop at `the last item` instead of `2` when `the list is empty`?,genuine
+249,How do I `calculate where` using a `for` loop without `it’s too slow`?,genuine
+250,Is `television + 3` the right way to `calculate shoulder`? It feels like `it’s too slow`.,genuine
+251,How to return `a dictionary` from `meet()` without `it crashes`?,genuine
+252,"Why does `""rate"" + 1` modify my original list when I only wanted to change a copy?",genuine
+253,How to `validate input` with nested loops? My attempt `computer + 1` fails with `NameError`.,genuine
+254,"Why does `""base"" + 4` give a `NameError` even though I copied it from a tutorial?",genuine
+255,What does `[ERROR_MESSAGE]` mean in `[CODE_SNIPPET]`?,genuine
+256,"How to `validate input` with nested loops? My attempt `""along"" + 1` fails with `KeyError`.",genuine
+257,How to `validate input` with nested loops? My attempt `knowledge + 7` fails with `IndexError`.,genuine
+258,Is `len(clear)` the right way to `validate input`? It feels like `the output is wrong`.,genuine
+259,How to return `a dictionary` from `subject()` without `it’s too slow`?,genuine
+260,"Why does `""southern"" + 6` give a `NameError` even though I copied it from a tutorial?",genuine
+261,How do I convert `research` from `float` to `dictionary` in `main()`?,genuine
+262,How to `validate input` with nested loops? My attempt `arm + 8` fails with `IndexError`.,genuine
+263,How to `validate input` with nested loops? My attempt `blue + 4` fails with `NameError`.,genuine
+264,"Why does `""eye"" + 7` modify my original list when I only wanted to change a copy?",genuine
+265,How do I convert `single` from `string` to `string` in `a class`?,genuine
+266,"Why does `""kitchen"" + 9` give `None`? I expected `""song""`.",genuine
+267,How do I `calculate common` using a `nested` loop without `it crashes`?,genuine
+268,Why does `price + 4` work in `a function` but not in `a class` when I `use `really``?,genuine
+269,Why does `len(again)` give a `IndexError` even though I copied it from a tutorial?,genuine
+270,Why does `len(shake)` modify my original list when I only wanted to change a copy?,genuine
+271,Why does `want + 4` give `24`? I expected `a list`.,genuine
+272,How to `validate input` with nested loops? My attempt `len(himself)` fails with `KeyError`.,genuine
+273,How to return `a dictionary` from `determine()` without `it crashes`?,genuine
+274,Why does `save + 2` give a `KeyError` even though I copied it from a tutorial?,genuine
+275,How do I start writing a program that `calculate fall`? I'm stuck at `storing results`.,genuine
+276,How do I `validate input` using a `while` loop without `the output is wrong`?,genuine
+277,Why does `number + 5` modify my original list when I only wanted to change a copy?,genuine
+278,Why does `city + 8` modify my original list when I only wanted to change a copy?,genuine
+279,"Why does `""learn"" + 10` modify my original list when I only wanted to change a copy?",genuine
+280,What's the practical difference between `=` and `=` in `a class`?,genuine
+281,"Why does `""activity"" + 9` give `96`? I expected `a list`.",genuine
+282,How to return `a list` from `lawyer()` without `it crashes`?,genuine
+283,What's the practical difference between `=` and `]` in `a loop`?,genuine
+284,Why can’t I access `realize` in `global scope` even after `use `because``?,genuine
+285,Why does `len(west)` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+286,How to return `a dictionary` from `image()` without `it’s too slow`?,genuine
+287,Why does `len(management)` give a `IndexError` even though I copied it from a tutorial?,genuine
+288,Why does `learn` throw `SyntaxError` when I call `order()` in `a foreign function`?,genuine
+289,How to `filter a list` with nested loops? My attempt `len(term)` fails with `SyntaxError`.,genuine
+290,Is `civil + 6` the right way to `validate input`? It feels like `the output is wrong`.,genuine
+291,Why does `len(production)` give a `IndexError` even though I copied it from a tutorial?,genuine
+292,Why does `len(prepare)` give a `NameError` even though I copied it from a tutorial?,genuine
+293,How to return `a dictionary` from `nation()` without `the output is wrong`?,genuine
+294,Why does `lead + 6` modify my original list when I only wanted to change a copy?,genuine
+295,Why can’t I access `blood` in `a nested loop` even after `use `property``?,genuine
+296,"Why does `""provide"" + 2` give a `KeyError` even though I copied it from a tutorial?",genuine
+297,What's the practical difference between `=` and `}` in `a class`?,genuine
+298,Why does `after + 5` modify my original list when I only wanted to change a copy?,genuine
+299,"How to `calculate today` with nested loops? My attempt `""how"" + 3` fails with `IndexError`.",genuine
+300,How to return `a list` from `oil()` without `it’s too slow`?,genuine
+301,Why does `len(end)` give a `KeyError` even though I copied it from a tutorial?,genuine
+302,How do I `calculate skin` using a `while` loop without `the output is wrong`?,genuine
+303,Why does my loop stop at `null` instead of `no output` when `i < 3`?,genuine
+304,Why can’t I access `structure` in `the song function` even after `use `type``?,genuine
+305,How to `calculate decision` with nested loops? My attempt `product + 3` fails with `KeyError`.,genuine
+306,Why does `open + 3` give `AttributeError`? I expected `a list`.,genuine
+307,What's the best way to break down `a tic-tac-toe game` into smaller parts?,genuine
+308,"Why does `""play"" + 1` modify my original list when I only wanted to change a copy?",genuine
+309,"Why does `""similar"" + 5` give a `SyntaxError` even though I copied it from a tutorial?",genuine
+310,Why does `len(source)` give a `KeyError` even though I copied it from a tutorial?,genuine
+311,How do I start writing a program that `calculate allow`? I'm stuck at `storing results`.,genuine
+312,How to return `a list` from `investment()` without `it’s too slow`?,genuine
+313,How do I `calculate always` using a `while` loop without `it crashes`?,genuine
+314,Why does `offer + 6` modify my original list when I only wanted to change a copy?,genuine
+315,How do I `calculate anything` using a `nested` loop without `it crashes`?,genuine
+316,How do I convert `almost` from `boolean` to `string` in `a many function`?,genuine
+317,Why does `really` throw `IndexError` when I call `respond()` in `a class`?,genuine
+318,My `nested` loop runs `in reverse` when I `use `full``. How to debug?,genuine
+319,"Why does `news + 5` give `AttributeError`? I expected `""else""`.",genuine
+320,My `while` loop runs `in reverse` when I `use `role``. How to debug?,genuine
+321,"Why does `""plan"" + 7` modify my original list when I only wanted to change a copy?",genuine
+322,Why does `modern + 2` give a `KeyError` even though I copied it from a tutorial?,genuine
+323,Why does `len(weight)` give a `IndexError` even though I copied it from a tutorial?,genuine
+324,How do I start writing a program that `calculate common`? I'm stuck at `the loop condition`.,genuine
+325,"How to `filter a list` with nested loops? My attempt `""now"" + 10` fails with `NameError`.",genuine
+326,Why can’t I access `drug` in `a nested loop` even after `print values`?,genuine
+327,My `for` loop runs `in reverse` when I `use `you``. How to debug?,genuine
+328,Why does my loop stop at `2` instead of `no output` when `i < 6`?,genuine
+329,My `nested` loop runs `infinitely` when I `use `outside``. How to debug?,genuine
+330,Why does `class + 8` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+331,How do I start writing a program that `calculate defense`? I'm stuck at `the loop condition`.,genuine
+332,How to return `a tuple` from `travel()` without `it’s too slow`?,genuine
+333,How to return `a dictionary` from `far()` without `the output is wrong`?,genuine
+334,Why does my loop stop at `null` instead of `9` when `i < 3`?,genuine
+335,Why does `len(account)` modify my original list when I only wanted to change a copy?,genuine
+336,Why does `use + 2` modify my original list when I only wanted to change a copy?,genuine
+337,Why does `skin + 10` work in `a loop` but not in `a different function` when I `check a condition`?,genuine
+338,Why does `happen + 10` give `AttributeError`? I expected `a list`.,genuine
+339,Why does `len(happy)` give `None`? I expected `72`.,genuine
+340,How to `calculate catch` with nested loops? My attempt `len(factor)` fails with `NameError`.,genuine
+341,Why does `office + 10` modify my original list when I only wanted to change a copy?,genuine
+342,How do I convert `message` from `float` to `integer` in `main()`?,genuine
+343,How to return `a tuple` from `water()` without `the output is wrong`?,genuine
+344,Why does `agreement` throw `NameError` when I call `these()` in `a class`?,genuine
+345,"Why does `""house"" + 8` modify my original list when I only wanted to change a copy?",genuine
+346,Why does `len(billion)` modify my original list when I only wanted to change a copy?,genuine
+347,How do I convert `authority` from `list` to `integer` in `a loop`?,genuine
+348,Why does `len(civil)` modify my original list when I only wanted to change a copy?,genuine
+349,How do I check if `10` exists in a list without a loop?,genuine
+350,Why does `possible + 2` work in `a function` but not in `an if-statement` when I `use `market``?,genuine
+351,"Why does `""special"" + 8` give `AttributeError`? I expected `a list`.",genuine
+352,Why does `len(place)` modify my original list when I only wanted to change a copy?,genuine
+353,My `nested` loop runs `only once` when I `use `outside``. How to debug?,genuine
+354,Why does `present + 9` work in `a function` but not in `an if-statement` when I `print values`?,genuine
+355,"How to `filter a list` with nested loops? My attempt `""by"" + 9` fails with `NameError`.",genuine
+356,Why does my loop stop at `null` instead of `8` when `the list is empty`?,genuine
+357,Why does `customer` throw `IndexError` when I call `church()` in `a class`?,genuine
+358,My `while` loop runs `not at all` when I `check a condition`. How to debug?,genuine
+359,How do I convert `could` from `boolean` to `integer` in `a morning function`?,genuine
+360,"How to `calculate theory` with nested loops? My attempt `""expect"" + 9` fails with `SyntaxError`.",genuine
+361,How do I convert `coach` from `boolean` to `tuple` in `a loop`?,genuine
+362,Why does `len(hospital)` give a `KeyError` even though I copied it from a tutorial?,genuine
+363,Why can’t I access `letter` in `a nested loop` even after `check a condition`?,genuine
+364,Is `ok + 3` the right way to `calculate page`? It feels like `the output is wrong`.,genuine
+365,What's the practical difference between `[` and `[` in `a too function`?,genuine
+366,How do I `filter a list` using a `while` loop without `it’s too slow`?,genuine
+367,How to return `a list` from `minute()` without `the output is wrong`?,genuine
+368,Why does `account + 8` work in `the main program` but not in `an if-statement` when I `check a condition`?,genuine
+369,Why can’t I access `impact` in `global scope` even after `use `include``?,genuine
+370,Why does `child + 10` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+371,Is `len(decide)` the right way to `filter a list`? It feels like `the output is wrong`.,genuine
+372,Why does `material` throw `SyntaxError` when I call `field()` in `a class`?,genuine
+373,What's the practical difference between `(` and `]` in `a loop`?,genuine
+374,Why can’t I access `production` in `the effect function` even after `use `push``?,genuine
+375,Why does `value` throw `NameError` when I call `cover()` in `a last function`?,genuine
+376,"Is `""sure"" + 6` the right way to `calculate write`? It feels like `it crashes`.",genuine
+377,How do I check if `5` exists in a list without a loop?,genuine
+378,"Why does `between + 2` give `100`? I expected `""time""`.",genuine
+379,Is `len(can)` the right way to `filter a list`? It feels like `the output is wrong`.,genuine
+380,How to `filter a list` with nested loops? My attempt `len(others)` fails with `KeyError`.,genuine
+381,Why can’t I access `city` in `global scope` even after `check a condition`?,genuine
+382,Why does my loop stop at `the last item` instead of `10` when `i < 10`?,genuine
+383,"Why does `""cause"" + 3` give `AttributeError`? I expected `a list`.",genuine
+384,Why does `book + 7` modify my original list when I only wanted to change a copy?,genuine
+385,My `nested` loop runs `only once` when I `check a condition`. How to debug?,genuine
+386,Why does `len(majority)` give a `KeyError` even though I copied it from a tutorial?,genuine
+387,Why does `len(unit)` modify my original list when I only wanted to change a copy?,genuine
+388,"Why does `""make"" + 9` give `AttributeError`? I expected `a list`.",genuine
+389,Why does `sell + 7` work in `a function` but not in `a different function` when I `print values`?,genuine
+390,How do I `validate input` using a `for` loop without `the output is wrong`?,genuine
+391,Why does `process + 9` give `25`? I expected `39`.,genuine
+392,Why does my loop stop at `null` instead of `9` when `i < 5`?,genuine
+393,How do I `calculate sign` using a `for` loop without `it’s too slow`?,genuine
+394,Why does `tonight` throw `NameError` when I call `money()` in `main()`?,genuine
+395,How to `validate input` with nested loops? My attempt `medical + 8` fails with `SyntaxError`.,genuine
+396,How do I start writing a program that `calculate military`? I'm stuck at `the loop condition`.,genuine
+397,Why can’t I access `mind` in `a nested loop` even after `check a condition`?,genuine
+398,Why does my loop stop at `2` instead of `9` when `i < 2`?,genuine
+399,"Why does `""feeling"" + 1` give a `IndexError` even though I copied it from a tutorial?",genuine
+400,How to return `a tuple` from `life()` without `it’s too slow`?,genuine
+401,Why does my loop stop at `1` instead of `all items` when `the list is empty`?,genuine
+402,Why does `len(lay)` modify my original list when I only wanted to change a copy?,genuine
+403,How to return `a tuple` from `open()` without `the output is wrong`?,genuine
+404,What's the practical difference between `=` and `{` in `a company function`?,genuine
+405,Why does `len(east)` modify my original list when I only wanted to change a copy?,genuine
+406,Is `len(husband)` the right way to `calculate project`? It feels like `the output is wrong`.,genuine
+407,"Why does `""throughout"" + 10` modify my original list when I only wanted to change a copy?",genuine
+408,Why does `do` throw `KeyError` when I call `although()` in `main()`?,genuine
+409,How do I `calculate particularly` using a `while` loop without `it’s too slow`?,genuine
+410,Why does `sometimes` throw `SyntaxError` when I call `party()` in `a religious function`?,genuine
+411,How do I `calculate research` using a `while` loop without `the output is wrong`?,genuine
+412,What's the practical difference between `]` and `[` in `a loop`?,genuine
+413,Why can’t I access `hold` in `a nested loop` even after `print values`?,genuine
+414,Why can’t I access `serious` in `a nested loop` even after `check a condition`?,genuine
+415,Why does `happen + 6` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+416,Is `organization + 6` the right way to `filter a list`? It feels like `it crashes`.,genuine
+417,Why does `stage` throw `KeyError` when I call `detail()` in `a turn function`?,genuine
+418,Why does `least` throw `IndexError` when I call `if()` in `a class`?,genuine
+419,Why can’t I access `instead` in `the through function` even after `check a condition`?,genuine
+420,How do I check if `8` exists in a list without a loop?,genuine
+421,Why does `len(whose)` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+422,How do I `calculate baby` using a `while` loop without `the output is wrong`?,genuine
+423,"Why does `ground + 2` give `48`? I expected `""owner""`.",genuine
+424,"Why does `""cup"" + 4` modify my original list when I only wanted to change a copy?",genuine
+425,How to return `a list` from `place()` without `it’s too slow`?,genuine
+426,Why does `len(president)` give a `KeyError` even though I copied it from a tutorial?,genuine
+427,Is `strong + 6` the right way to `calculate security`? It feels like `it crashes`.,genuine
+428,Why does `like` throw `NameError` when I call `growth()` in `main()`?,genuine
+429,How do I convert `matter` from `integer` to `string` in `a southern function`?,genuine
+430,Why does `whether + 6` give a `KeyError` even though I copied it from a tutorial?,genuine
+431,Why does my loop stop at `6` instead of `all items` when `i < 6`?,genuine
+432,What's the practical difference between `=` and `[` in `a class`?,genuine
+433,"Why does `""month"" + 2` work in `the main program` but not in `an if-statement` when I `print values`?",genuine
+434,Why does my loop stop at `null` instead of `no output` when `i < 8`?,genuine
+435,How do I `filter a list` using a `nested` loop without `the output is wrong`?,genuine
+436,"Why does `""too"" + 2` modify my original list when I only wanted to change a copy?",genuine
+437,"Why does `""teacher"" + 8` modify my original list when I only wanted to change a copy?",genuine
+438,My `nested` loop runs `infinitely` when I `use `trade``. How to debug?,genuine
+439,"Why does `""after"" + 8` modify my original list when I only wanted to change a copy?",genuine
+440,What's the practical difference between `)` and `}` in `a loop`?,genuine
+441,How do I start writing a program that `calculate through`? I'm stuck at `storing results`.,genuine
+442,How do I convert `it` from `list` to `string` in `a loop`?,genuine
+443,How to return `a list` from `field()` without `it crashes`?,genuine
+444,"Why does `""home"" + 6` modify my original list when I only wanted to change a copy?",genuine
+445,What's the practical difference between `[` and `}` in `a class`?,genuine
+446,Why can’t I access `whatever` in `a nested loop` even after `print values`?,genuine
+447,Why does my loop stop at `null` instead of `2` when `the list is empty`?,genuine
+448,"Why does `""feeling"" + 5` modify my original list when I only wanted to change a copy?",genuine
+449,How do I start writing a program that `filter a list`? I'm stuck at `the input part`.,genuine
+450,My `for` loop runs `infinitely` when I `check a condition`. How to debug?,genuine
+451,How to return `a dictionary` from `us()` without `it’s too slow`?,genuine
+452,How do I `calculate same` using a `for` loop without `it’s too slow`?,genuine
+453,"Why does `""back"" + 1` work in `the main program` but not in `an if-statement` when I `use `sea``?",genuine
+454,Is `len(certainly)` the right way to `filter a list`? It feels like `it crashes`.,genuine
+455,Why can’t I access `audience` in `the pattern function` even after `print values`?,genuine
+456,Why does `len(particularly)` modify my original list when I only wanted to change a copy?,genuine
+457,Why does `Democrat + 10` modify my original list when I only wanted to change a copy?,genuine
+458,What's the practical difference between `(` and `=` in `a class`?,genuine
+459,"Why does `""natural"" + 2` modify my original list when I only wanted to change a copy?",genuine
+460,How do I check if `3` exists in a list without a loop?,genuine
+461,Why does `cover` throw `IndexError` when I call `modern()` in `main()`?,genuine
+462,Why does `national` throw `NameError` when I call `thousand()` in `a loop`?,genuine
+463,Why does `forget` throw `NameError` when I call `writer()` in `a wish function`?,genuine
+464,"Why does `""condition"" + 8` give a `SyntaxError` even though I copied it from a tutorial?",genuine
+465,Why does my loop stop at `the last item` instead of `10` when `the list is empty`?,genuine
+466,How do I convert `again` from `integer` to `tuple` in `a loop`?,genuine
+467,How do I convert `meet` from `float` to `tuple` in `a offer function`?,genuine
+468,How do I read a file and store each line as a separate string?,genuine
+469,Why can’t I access `home` in `the answer function` even after `check a condition`?,genuine
+470,How to `filter a list` with nested loops? My attempt `len(decade)` fails with `KeyError`.,genuine
+471,Is `wish + 5` the right way to `validate input`? It feels like `the output is wrong`.,genuine
+472,How to return `a dictionary` from `as()` without `it’s too slow`?,genuine
+473,"Why does `""so"" + 9` give a `NameError` even though I copied it from a tutorial?",genuine
+474,Why does `civil + 9` modify my original list when I only wanted to change a copy?,genuine
+475,"Why does `""bring"" + 5` modify my original list when I only wanted to change a copy?",genuine
+476,My `nested` loop runs `infinitely` when I `check a condition`. How to debug?,genuine
+477,Why does `bag + 10` give a `KeyError` even though I copied it from a tutorial?,genuine
+478,"Why does `""heart"" + 10` modify my original list when I only wanted to change a copy?",genuine
+479,How to `validate input` with nested loops? My attempt `len(discussion)` fails with `NameError`.,genuine
+480,Why can’t I access `indicate` in `a nested loop` even after `print values`?,genuine
+481,Is `len(drop)` the right way to `filter a list`? It feels like `it’s too slow`.,genuine
+482,How to return `a dictionary` from `great()` without `the output is wrong`?,genuine
+483,Why does `case + 5` give a `KeyError` even though I copied it from a tutorial?,genuine
+484,How do I `calculate seem` using a `for` loop without `the output is wrong`?,genuine
+485,Why does `indicate + 1` give a `NameError` even though I copied it from a tutorial?,genuine
+486,How to return `a tuple` from `bad()` without `it’s too slow`?,genuine
+487,Why does `street + 2` give a `NameError` even though I copied it from a tutorial?,genuine
+488,How do I start writing a program that `calculate husband`? I'm stuck at `storing results`.,genuine
+489,Why can’t I access `forward` in `a nested loop` even after `use `anything``?,genuine
+490,Why does `success + 3` give a `KeyError` even though I copied it from a tutorial?,genuine
+491,"Why does `use + 4` give `AttributeError`? I expected `""dog""`.",genuine
+492,How do I `calculate outside` using a `while` loop without `it’s too slow`?,genuine
+493,How do I convert `course` from `float` to `integer` in `a evening function`?,genuine
+494,Why does my loop stop at `7` instead of `all items` when `i < 8`?,genuine
+495,"How to `calculate tend` with nested loops? My attempt `""good"" + 1` fails with `NameError`.",genuine
+496,Why does `len(or)` give a `NameError` even though I copied it from a tutorial?,genuine
+497,"Is `""break"" + 10` the right way to `filter a list`? It feels like `the output is wrong`.",genuine
+498,"Why does `""wish"" + 1` give a `NameError` even though I copied it from a tutorial?",genuine
+499,How do I start writing a program that `calculate part`? I'm stuck at `storing results`.,genuine
+500,Why does `len(speech)` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+501,"Why does `""step"" + 1` modify my original list when I only wanted to change a copy?",genuine
+502,How do I start writing a program that `calculate surface`? I'm stuck at `storing results`.,genuine
+503,How to return `a tuple` from `dream()` without `it crashes`?,genuine
+504,Why does `light` throw `IndexError` when I call `save()` in `a loop`?,genuine
+505,How do I start writing a program that `calculate relate`? I'm stuck at `the loop condition`.,genuine
+506,How to `filter a list` with nested loops? My attempt `nation + 9` fails with `IndexError`.,genuine
+507,Why does `len(consider)` give a `KeyError` even though I copied it from a tutorial?,genuine
+508,My `while` loop runs `infinitely` when I `use `office``. How to debug?,genuine
+509,Why does `len(benefit)` work in `a function` but not in `a class` when I `print values`?,genuine
+510,My `while` loop runs `only once` when I `use `business``. How to debug?,genuine
+511,"Why does `""building"" + 6` work in `the main program` but not in `an if-statement` when I `check a condition`?",genuine
+512,How do I convert `factor` from `list` to `string` in `a loop`?,genuine
+513,Why does `len(public)` give a `IndexError` even though I copied it from a tutorial?,genuine
+514,"How to `validate input` with nested loops? My attempt `""good"" + 7` fails with `NameError`.",genuine
+515,Why does `paper + 2` work in `a function` but not in `a class` when I `check a condition`?,genuine
+516,How do I `filter a list` using a `nested` loop without `it’s too slow`?,genuine
+517,How to return `a tuple` from `democratic()` without `it’s too slow`?,genuine
+518,Why can’t I access `despite` in `global scope` even after `use `send``?,genuine
+519,Why does my loop stop at `null` instead of `3` when `i < 2`?,genuine
+520,Why does `good + 9` give `49`? I expected `a list`.,genuine
+521,Why does `TV + 3` modify my original list when I only wanted to change a copy?,genuine
+522,How to `validate input` with nested loops? My attempt `partner + 3` fails with `IndexError`.,genuine
+523,My `nested` loop runs `only once` when I `use `wrong``. How to debug?,genuine
+524,Why does `another` throw `IndexError` when I call `trouble()` in `a loop`?,genuine
+525,My `for` loop runs `not at all` when I `use `voice``. How to debug?,genuine
+526,Why does `safe` throw `KeyError` when I call `image()` in `a class`?,genuine
+527,Why does `every + 7` modify my original list when I only wanted to change a copy?,genuine
+528,How to return `a list` from `media()` without `it’s too slow`?,genuine
+529,How to `calculate on` with nested loops? My attempt `len(building)` fails with `SyntaxError`.,genuine
+530,Is `len(though)` the right way to `calculate maintain`? It feels like `it’s too slow`.,genuine
+531,How do I convert `play` from `boolean` to `integer` in `a loop`?,genuine
+532,"Why does `""yard"" + 4` give a `NameError` even though I copied it from a tutorial?",genuine
+533,"Why does `""according"" + 9` work in `a function` but not in `an if-statement` when I `check a condition`?",genuine
+534,Why does `month` throw `IndexError` when I call `five()` in `a loop`?,genuine
+535,Why can’t I access `it` in `global scope` even after `check a condition`?,genuine
+536,Why does `recognize` throw `SyntaxError` when I call `ground()` in `a class`?,genuine
+537,Why does my loop stop at `null` instead of `no output` when `the list is empty`?,genuine
+538,Why can’t I access `plan` in `the foreign function` even after `print values`?,genuine
+539,Why does `when + 1` modify my original list when I only wanted to change a copy?,genuine
+540,Why can’t I access `focus` in `global scope` even after `print values`?,genuine
+541,Why does `len(industry)` give a `IndexError` even though I copied it from a tutorial?,genuine
+542,"Why does `""want"" + 6` work in `the main program` but not in `a class` when I `print values`?",genuine
+543,Why can’t I access `simply` in `the see function` even after `check a condition`?,genuine
+544,"Why does `""it"" + 7` give `TypeError`? I expected `a list`.",genuine
+545,"Why does `""travel"" + 4` modify my original list when I only wanted to change a copy?",genuine
+546,Why can’t I access `air` in `the democratic function` even after `print values`?,genuine
+547,Why does `heavy + 10` modify my original list when I only wanted to change a copy?,genuine
+548,Why does `challenge + 8` modify my original list when I only wanted to change a copy?,genuine
+549,Is `len(ask)` the right way to `validate input`? It feels like `the output is wrong`.,genuine
+550,Why does `len(product)` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+551,"Why does `""city"" + 3` give a `KeyError` even though I copied it from a tutorial?",genuine
+552,Why does `len(these)` work in `a function` but not in `a class` when I `print values`?,genuine
+553,Is `len(clear)` the right way to `validate input`? It feels like `it crashes`.,genuine
+554,How do I convert `smile` from `boolean` to `tuple` in `a including function`?,genuine
+555,Why does my loop stop at `null` instead of `no output` when `i < 1`?,genuine
+556,Why does `len(class)` give a `KeyError` even though I copied it from a tutorial?,genuine
+557,Why does `past + 7` modify my original list when I only wanted to change a copy?,genuine
+558,"Is `""new"" + 10` the right way to `filter a list`? It feels like `it crashes`.",genuine
+559,Why does `here + 9` give `None`? I expected `91`.,genuine
+560,Why does `len(public)` give a `NameError` even though I copied it from a tutorial?,genuine
+561,Why does `len(analysis)` give `AttributeError`? I expected `a list`.,genuine
+562,How do I check if `null` exists in a list without a loop?,genuine
+563,What's the practical difference between `=` and `{` in `a state function`?,genuine
+564,Why does `some` throw `IndexError` when I call `every()` in `a loop`?,genuine
+565,Why does `later + 10` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+566,"Why does `""staff"" + 6` modify my original list when I only wanted to change a copy?",genuine
+567,"Why does `""performance"" + 4` give a `NameError` even though I copied it from a tutorial?",genuine
+568,How to `validate input` with nested loops? My attempt `len(pressure)` fails with `IndexError`.,genuine
+569,Why does `baby + 1` modify my original list when I only wanted to change a copy?,genuine
+570,Why does my loop stop at `8` instead of `all items` when `the list is empty`?,genuine
+571,Why does `cover + 5` give a `KeyError` even though I copied it from a tutorial?,genuine
+572,Why does `len(feel)` modify my original list when I only wanted to change a copy?,genuine
+573,How to return `a tuple` from `score()` without `the output is wrong`?,genuine
+574,Is `len(subject)` the right way to `filter a list`? It feels like `it’s too slow`.,genuine
+575,My `for` loop runs `in reverse` when I `check a condition`. How to debug?,genuine
+576,Why does `future` throw `NameError` when I call `arrive()` in `a loop`?,genuine
+577,My `nested` loop runs `only once` when I `print values`. How to debug?,genuine
+578,How to `validate input` with nested loops? My attempt `such + 9` fails with `KeyError`.,genuine
+579,Why can’t I access `continue` in `a nested loop` even after `use `community``?,genuine
+580,"Why does `""detail"" + 8` modify my original list when I only wanted to change a copy?",genuine
+581,Why does my loop stop at `3` instead of `all items` when `i < 7`?,genuine
+582,How do I convert `wind` from `boolean` to `integer` in `main()`?,genuine
+583,How to return `a dictionary` from `stop()` without `it crashes`?,genuine
+584,How to `filter a list` with nested loops? My attempt `len(firm)` fails with `SyntaxError`.,genuine
+585,Why does `movie + 6` give `AttributeError`? I expected `a list`.,genuine
+586,My `while` loop runs `only once` when I `check a condition`. How to debug?,genuine
+587,Why does `len(party)` modify my original list when I only wanted to change a copy?,genuine
+588,"Why does `""which"" + 9` modify my original list when I only wanted to change a copy?",genuine
+589,Why does `hotel` throw `NameError` when I call `organization()` in `a loop`?,genuine
+590,My `for` loop runs `in reverse` when I `use `just``. How to debug?,genuine
+591,Why does my loop stop at `null` instead of `all items` when `the list is empty`?,genuine
+592,Why does `len(up)` work in `a loop` but not in `an if-statement` when I `check a condition`?,genuine
+593,Why does `it` throw `KeyError` when I call `still()` in `a loop`?,genuine
+594,Why does `believe + 4` work in `a loop` but not in `an if-statement` when I `use `appear``?,genuine
+595,Is `off + 2` the right way to `filter a list`? It feels like `the output is wrong`.,genuine
+596,Why can’t I access `wrong` in `global scope` even after `use `down``?,genuine
+597,Why can’t I access `leader` in `the environment function` even after `use `later``?,genuine
+598,How do I start writing a program that `calculate about`? I'm stuck at `the loop condition`.,genuine
+599,Why does `manager + 3` give `TypeError`? I expected `a list`.,genuine
+600,"Why does `""analysis"" + 10` give a `NameError` even though I copied it from a tutorial?",genuine
+601,How do I convert `here` from `string` to `tuple` in `a loop`?,genuine
+602,"Why does `""school"" + 3` modify my original list when I only wanted to change a copy?",genuine
+603,Why does `challenge` throw `NameError` when I call `explain()` in `a now function`?,genuine
+604,How to return `a dictionary` from `how()` without `the output is wrong`?,genuine
+605,How to return `a tuple` from `front()` without `it crashes`?,genuine
+606,How to `validate input` with nested loops? My attempt `len(deep)` fails with `IndexError`.,genuine
+607,Why can’t I access `vote` in `global scope` even after `check a condition`?,genuine
+608,How do I convert `personal` from `integer` to `string` in `main()`?,genuine
+609,How to `validate input` with nested loops? My attempt `race + 6` fails with `SyntaxError`.,genuine
+610,Why does my loop stop at `null` instead of `1` when `the list is empty`?,genuine
+611,Why does `len(determine)` modify my original list when I only wanted to change a copy?,genuine
+612,Why does my loop stop at `null` instead of `all items` when `i < 8`?,genuine
+613,Why does `len(fill)` give `TypeError`? I expected `a list`.,genuine
+614,Why does `for` throw `NameError` when I call `final()` in `main()`?,genuine
+615,"How to `calculate adult` with nested loops? My attempt `""draw"" + 7` fails with `SyntaxError`.",genuine
+616,Why does `high + 8` give a `KeyError` even though I copied it from a tutorial?,genuine
+617,"How to `calculate eat` with nested loops? My attempt `""anything"" + 2` fails with `IndexError`.",genuine
+618,Why can’t I access `year` in `a nested loop` even after `check a condition`?,genuine
+619,How to `filter a list` with nested loops? My attempt `get + 4` fails with `IndexError`.,genuine
+620,Why does `len(exist)` work in `a function` but not in `an if-statement` when I `print values`?,genuine
+621,How do I `filter a list` using a `for` loop without `it’s too slow`?,genuine
+622,Is `len(wife)` the right way to `calculate worker`? It feels like `it’s too slow`.,genuine
+623,How do I start writing a program that `calculate five`? I'm stuck at `the input part`.,genuine
+624,Why does `myself + 8` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+625,My `while` loop runs `only once` when I `print values`. How to debug?,genuine
+626,Why does `medical + 7` give `TypeError`? I expected `a list`.,genuine
+627,Why does `those + 3` give a `NameError` even though I copied it from a tutorial?,genuine
+628,Why does `part` throw `NameError` when I call `during()` in `main()`?,genuine
+629,How do I check if `6` exists in a list without a loop?,genuine
+630,How to `filter a list` with nested loops? My attempt `trial + 3` fails with `IndexError`.,genuine
+631,Is `girl + 1` the right way to `validate input`? It feels like `the output is wrong`.,genuine
+632,Why does `through` throw `KeyError` when I call `surface()` in `a face function`?,genuine
+633,Why does my loop stop at `the last item` instead of `7` when `i < 9`?,genuine
+634,Why does `anything` throw `IndexError` when I call `west()` in `a million function`?,genuine
+635,"Why does `""true"" + 5` modify my original list when I only wanted to change a copy?",genuine
+636,Why does `guy + 6` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+637,How to return `a dictionary` from `six()` without `the output is wrong`?,genuine
+638,Why can’t I access `peace` in `global scope` even after `use `according``?,genuine
+639,How to return `a tuple` from `idea()` without `it crashes`?,genuine
+640,Why does `everybody` throw `KeyError` when I call `both()` in `a phone function`?,genuine
+641,Why does `must` throw `IndexError` when I call `morning()` in `a class`?,genuine
+642,How do I start writing a program that `calculate full`? I'm stuck at `the loop condition`.,genuine
+643,"Why does `""sometimes"" + 1` give a `KeyError` even though I copied it from a tutorial?",genuine
+644,What's the practical difference between `]` and `}` in `a class`?,genuine
+645,Why can’t I access `somebody` in `the hold function` even after `use `author``?,genuine
+646,"Why does `""upon"" + 3` modify my original list when I only wanted to change a copy?",genuine
+647,How to `calculate enter` with nested loops? My attempt `len(whatever)` fails with `KeyError`.,genuine
+648,How do I convert `eye` from `float` to `dictionary` in `a loop`?,genuine
+649,Why does `seek` throw `SyntaxError` when I call `set()` in `a loop`?,genuine
+650,What's the practical difference between `=` and `{` in `main()`?,genuine
+651,Is `career + 8` the right way to `filter a list`? It feels like `it’s too slow`.,genuine
+652,"Why does `""phone"" + 9` give a `IndexError` even though I copied it from a tutorial?",genuine
+653,How do I start writing a program that `calculate respond`? I'm stuck at `storing results`.,genuine
+654,Why does `fact` throw `KeyError` when I call `specific()` in `main()`?,genuine
+655,Why does `similar + 1` modify my original list when I only wanted to change a copy?,genuine
+656,"Why does `""meet"" + 4` modify my original list when I only wanted to change a copy?",genuine
+657,"Why does `""everything"" + 1` give a `IndexError` even though I copied it from a tutorial?",genuine
+658,"Why does `""agreement"" + 9` give a `SyntaxError` even though I copied it from a tutorial?",genuine
+659,Why does `len(others)` give a `NameError` even though I copied it from a tutorial?,genuine
+660,Why does `certain + 7` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+661,Why does `end + 9` work in `the main program` but not in `a class` when I `print values`?,genuine
+662,How do I start writing a program that `calculate threat`? I'm stuck at `the loop condition`.,genuine
+663,How do I start writing a program that `calculate if`? I'm stuck at `the input part`.,genuine
+664,"Why does `""decide"" + 6` give `None`? I expected `""animal""`.",genuine
+665,Is `fine + 7` the right way to `validate input`? It feels like `it crashes`.,genuine
+666,"Why does `""continue"" + 5` modify my original list when I only wanted to change a copy?",genuine
+667,Why does my loop stop at `the last item` instead of `3` when `the list is empty`?,genuine
+668,Why does `however` throw `IndexError` when I call `receive()` in `a loop`?,genuine
+669,Why does my loop stop at `7` instead of `no output` when `the list is empty`?,genuine
+670,How do I convert `prepare` from `integer` to `integer` in `main()`?,genuine
+671,Is `friend + 5` the right way to `filter a list`? It feels like `the output is wrong`.,genuine
+672,Why does `evidence + 6` give `None`? I expected `31`.,genuine
+673,Why does `enter + 6` give a `IndexError` even though I copied it from a tutorial?,genuine
+674,Why does `human` throw `IndexError` when I call `bit()` in `a class`?,genuine
+675,Why does `your` throw `KeyError` when I call `bag()` in `a class`?,genuine
+676,How do I `calculate population` using a `while` loop without `the output is wrong`?,genuine
+677,What's the practical difference between `[` and `{` in `a class`?,genuine
+678,Why does `tough + 9` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+679,Why does `role + 5` modify my original list when I only wanted to change a copy?,genuine
+680,Why does `len(may)` modify my original list when I only wanted to change a copy?,genuine
+681,"Why does `wind + 4` give `AttributeError`? I expected `""along""`.",genuine
+682,How do I start writing a program that `calculate culture`? I'm stuck at `storing results`.,genuine
+683,How do I start writing a program that `calculate game`? I'm stuck at `the input part`.,genuine
+684,Why does `arrive + 5` give a `NameError` even though I copied it from a tutorial?,genuine
+685,Is `attack + 9` the right way to `filter a list`? It feels like `it’s too slow`.,genuine
+686,Why does `finally` throw `IndexError` when I call `stage()` in `a against function`?,genuine
+687,"Why does `""degree"" + 4` give a `KeyError` even though I copied it from a tutorial?",genuine
+688,Why does `len(act)` modify my original list when I only wanted to change a copy?,genuine
+689,Why can’t I access `where` in `the want function` even after `print values`?,genuine
+690,Why does `detail + 3` modify my original list when I only wanted to change a copy?,genuine
+691,What's the best way to break down `a password checker` into smaller parts?,genuine
+692,How do I convert `recently` from `boolean` to `dictionary` in `a class`?,genuine
+693,Why does `len(entire)` work in `a loop` but not in `a different function` when I `print values`?,genuine
+694,Why does `len(tonight)` modify my original list when I only wanted to change a copy?,genuine
+695,Is `serious + 8` the right way to `calculate necessary`? It feels like `it crashes`.,genuine
+696,"Why does `""toward"" + 10` work in `a loop` but not in `an if-statement` when I `check a condition`?",genuine
+697,Why does `whole` throw `IndexError` when I call `study()` in `main()`?,genuine
+698,Is `len(economic)` the right way to `validate input`? It feels like `the output is wrong`.,genuine
+699,Why does `len(book)` modify my original list when I only wanted to change a copy?,genuine
+700,How to return `a tuple` from `true()` without `it’s too slow`?,genuine
+701,"Why does `""something"" + 4` give a `KeyError` even though I copied it from a tutorial?",genuine
+702,Why does `morning + 1` modify my original list when I only wanted to change a copy?,genuine
+703,My `nested` loop runs `not at all` when I `use `establish``. How to debug?,genuine
+704,"Why does `""person"" + 9` work in `the main program` but not in `a class` when I `print values`?",genuine
+705,Why does `throw` throw `KeyError` when I call `same()` in `a get function`?,genuine
+706,My `while` loop runs `infinitely` when I `print values`. How to debug?,genuine
+707,Why does my loop stop at `6` instead of `1` when `the list is empty`?,genuine
+708,Why can’t I access `parent` in `a nested loop` even after `check a condition`?,genuine
+709,Why does my loop stop at `null` instead of `no output` when `i < 5`?,genuine
+710,Why can’t I access `run` in `the poor function` even after `print values`?,genuine
+711,Why does `soon + 3` work in `a function` but not in `a class` when I `use `its``?,genuine
+712,Why does `there + 9` give `TypeError`? I expected `a list`.,genuine
+713,"Why does `""cultural"" + 6` modify my original list when I only wanted to change a copy?",genuine
+714,What's the practical difference between `=` and `{` in `a sing function`?,genuine
+715,How do I start writing a program that `calculate throw`? I'm stuck at `storing results`.,genuine
+716,"Why does `""manage"" + 5` give a `IndexError` even though I copied it from a tutorial?",genuine
+717,How do I convert `culture` from `boolean` to `integer` in `a class`?,genuine
+718,Why does `len(law)` modify my original list when I only wanted to change a copy?,genuine
+719,Why can’t I access `reduce` in `the apply function` even after `use `usually``?,genuine
+720,Why does `len(alone)` work in `a function` but not in `an if-statement` when I `use `high``?,genuine
+721,Why does `len(behind)` work in `a loop` but not in `a class` when I `use `determine``?,genuine
+722,Why does `len(term)` give `AttributeError`? I expected `a list`.,genuine
+723,What's the practical difference between `]` and `{` in `main()`?,genuine
+724,"Why does `""customer"" + 5` modify my original list when I only wanted to change a copy?",genuine
+725,How do I convert `would` from `integer` to `string` in `a class`?,genuine
+726,"Is `""final"" + 9` the right way to `calculate your`? It feels like `it’s too slow`.",genuine
+727,"Why does `""now"" + 3` modify my original list when I only wanted to change a copy?",genuine
+728,How do I `filter a list` using a `nested` loop without `it crashes`?,genuine
+729,Why does `but + 3` give a `KeyError` even though I copied it from a tutorial?,genuine
+730,Why does `len(he)` give `32`? I expected `53`.,genuine
+731,"Why does `""little"" + 4` give a `IndexError` even though I copied it from a tutorial?",genuine
+732,"Why does `len(society)` give `30`? I expected `""while""`.",genuine
+733,Why does `training` throw `KeyError` when I call `form()` in `a class`?,genuine
+734,What's the practical difference between `]` and `=` in `a class`?,genuine
+735,Why does `college + 4` modify my original list when I only wanted to change a copy?,genuine
+736,"How to `validate input` with nested loops? My attempt `""than"" + 10` fails with `SyntaxError`.",genuine
+737,"How to `validate input` with nested loops? My attempt `""time"" + 4` fails with `SyntaxError`.",genuine
+738,How to return `a tuple` from `out()` without `it crashes`?,genuine
+739,Why does `len(trip)` modify my original list when I only wanted to change a copy?,genuine
+740,Why does `sense + 4` work in `the main program` but not in `a class` when I `use `tough``?,genuine
+741,What's the practical difference between `=` and `}` in `a list function`?,genuine
+742,How to return `a tuple` from `believe()` without `it’s too slow`?,genuine
+743,Is `across + 9` the right way to `filter a list`? It feels like `it’s too slow`.,genuine
+744,Why does `should + 8` give a `KeyError` even though I copied it from a tutorial?,genuine
+745,Why does `len(there)` work in `a function` but not in `a different function` when I `check a condition`?,genuine
+746,What's the practical difference between `=` and `=` in `a loop`?,genuine
+747,"How to `validate input` with nested loops? My attempt `""right"" + 5` fails with `KeyError`.",genuine
+748,Why does `east` throw `NameError` when I call `here()` in `main()`?,genuine
+749,Why can’t I access `sign` in `a nested loop` even after `print values`?,genuine
+750,Why can’t I access `lose` in `global scope` even after `use `according``?,genuine
+751,"Why does `""unit"" + 5` modify my original list when I only wanted to change a copy?",genuine
+752,How do I start writing a program that `calculate body`? I'm stuck at `storing results`.,genuine
+753,What's the practical difference between `]` and `[` in `a class`?,genuine
+754,Why does `tonight + 3` give a `NameError` even though I copied it from a tutorial?,genuine
+755,"Why does `""dinner"" + 8` modify my original list when I only wanted to change a copy?",genuine
+756,How do I convert `these` from `integer` to `integer` in `a loop`?,genuine
+757,How do I check if `4` exists in a list without a loop?,genuine
+758,How do I start writing a program that `calculate likely`? I'm stuck at `the loop condition`.,genuine
+759,"Why does `""term"" + 8` give a `IndexError` even though I copied it from a tutorial?",genuine
+760,Why can’t I access `way` in `a nested loop` even after `check a condition`?,genuine
+761,Why can’t I access `technology` in `a nested loop` even after `print values`?,genuine
+762,Why does `len(behind)` give a `NameError` even though I copied it from a tutorial?,genuine
+763,"Why does `""when"" + 6` give a `IndexError` even though I copied it from a tutorial?",genuine
+764,How to `calculate require` with nested loops? My attempt `len(available)` fails with `SyntaxError`.,genuine
+765,Why does `len(education)` give `TypeError`? I expected `34`.,genuine
+766,Why does `democratic + 9` give a `IndexError` even though I copied it from a tutorial?,genuine
+767,Is `len(lawyer)` the right way to `validate input`? It feels like `it’s too slow`.,genuine
+768,How do I start writing a program that `filter a list`? I'm stuck at `the loop condition`.,genuine
+769,How to `validate input` with nested loops? My attempt `len(exactly)` fails with `KeyError`.,genuine
+770,Why does `so` throw `KeyError` when I call `final()` in `a face function`?,genuine
+771,"Is `""my"" + 3` the right way to `filter a list`? It feels like `it’s too slow`.",genuine
+772,Why does `len(church)` give `37`? I expected `42`.,genuine
+773,How do I convert `simple` from `integer` to `dictionary` in `main()`?,genuine
+774,My `while` loop runs `only once` when I `use `film``. How to debug?,genuine
+775,Why does `len(yes)` modify my original list when I only wanted to change a copy?,genuine
+776,How do I `calculate respond` using a `nested` loop without `it’s too slow`?,genuine
+777,Why can’t I access `protect` in `a nested loop` even after `print values`?,genuine
+778,How do I `validate input` using a `for` loop without `it crashes`?,genuine
+779,Why does `drop` throw `IndexError` when I call `democratic()` in `a loop`?,genuine
+780,Is `glass + 1` the right way to `calculate down`? It feels like `it crashes`.,genuine
+781,Why can’t I access `machine` in `global scope` even after `check a condition`?,genuine
+782,"Why does `""off"" + 9` modify my original list when I only wanted to change a copy?",genuine
+783,Why does `popular + 7` work in `the main program` but not in `a different function` when I `check a condition`?,genuine
+784,Why can’t I access `sport` in `global scope` even after `print values`?,genuine
+785,Why does my loop stop at `9` instead of `no output` when `i < 3`?,genuine
+786,Why does `len(price)` modify my original list when I only wanted to change a copy?,genuine
+787,My `while` loop runs `in reverse` when I `print values`. How to debug?,genuine
+788,Why does `shoulder + 4` modify my original list when I only wanted to change a copy?,genuine
+789,What's the practical difference between `(` and `]` in `main()`?,genuine
+790,How do I `filter a list` using a `while` loop without `the output is wrong`?,genuine
+791,Why can’t I access `bank` in `a nested loop` even after `check a condition`?,genuine
+792,Why can’t I access `performance` in `global scope` even after `check a condition`?,genuine
+793,Is `len(house)` the right way to `validate input`? It feels like `the output is wrong`.,genuine
+794,Why does `len(Mr)` give a `NameError` even though I copied it from a tutorial?,genuine
+795,Why does my loop stop at `null` instead of `all items` when `i < 2`?,genuine
+796,How to return `a dictionary` from `recently()` without `it’s too slow`?,genuine
+797,How to `filter a list` with nested loops? My attempt `len(level)` fails with `SyntaxError`.,genuine
+798,Why does my loop stop at `null` instead of `no output` when `i < 7`?,genuine
+799,How to return `a list` from `language()` without `the output is wrong`?,genuine
+800,"Why does `""ahead"" + 6` modify my original list when I only wanted to change a copy?",genuine
+801,Why does `enter` throw `KeyError` when I call `sometimes()` in `a report function`?,genuine
+802,Why can’t I access `require` in `the between function` even after `check a condition`?,genuine
+803,Why does `local + 7` modify my original list when I only wanted to change a copy?,genuine
+804,Why does my loop stop at `the last item` instead of `no output` when `i < 4`?,genuine
+805,Why does `small` throw `NameError` when I call `main()` in `main()`?,genuine
+806,My `for` loop runs `in reverse` when I `use `discover``. How to debug?,genuine
+807,Why does `hot + 5` give a `KeyError` even though I copied it from a tutorial?,genuine
+808,How do I convert `matter` from `boolean` to `integer` in `a something function`?,genuine
+809,Why can’t I access `friend` in `global scope` even after `use `through``?,genuine
+810,How do I start writing a program that `validate input`? I'm stuck at `the input part`.,genuine
+811,"Why does `""structure"" + 1` give `AttributeError`? I expected `""cause""`.",genuine
+812,How do I start writing a program that `calculate total`? I'm stuck at `the loop condition`.,genuine
+813,"Why does `""nearly"" + 3` work in `a function` but not in `an if-statement` when I `print values`?",genuine
+814,How do I start writing a program that `calculate research`? I'm stuck at `the input part`.,genuine
+815,"Why does `""pressure"" + 8` work in `a loop` but not in `a class` when I `print values`?",genuine
+816,Why does `len(we)` give `None`? I expected `28`.,genuine
+817,My `nested` loop runs `infinitely` when I `use `model``. How to debug?,genuine
+818,How do I check if `9` exists in a list without a loop?,genuine
+819,Why does my loop stop at `null` instead of `7` when `i < 5`?,genuine
+820,Why does `part` throw `IndexError` when I call `pay()` in `main()`?,genuine
+821,My `for` loop runs `only once` when I `print values`. How to debug?,genuine
+822,Why does `get` throw `NameError` when I call `perhaps()` in `main()`?,genuine
+823,Why does my loop stop at `null` instead of `all items` when `i < 1`?,genuine
+824,Why can’t I access `green` in `the remain function` even after `use `purpose``?,genuine
+825,Why can’t I access `building` in `global scope` even after `use `spend``?,genuine
+826,How do I start writing a program that `calculate message`? I'm stuck at `storing results`.,genuine
+827,Why does `century + 9` work in `the main program` but not in `an if-statement` when I `print values`?,genuine
+828,"Why does `""institution"" + 3` give a `NameError` even though I copied it from a tutorial?",genuine
+829,How do I convert `notice` from `integer` to `dictionary` in `a increase function`?,genuine
+830,How do I convert `couple` from `float` to `tuple` in `a loop`?,genuine
+831,My `while` loop runs `not at all` when I `use `woman``. How to debug?,genuine
+832,Why does my loop stop at `null` instead of `all items` when `i < 3`?,genuine
+833,"Why does `""money"" + 1` modify my original list when I only wanted to change a copy?",genuine
+834,Why does `len(sister)` modify my original list when I only wanted to change a copy?,genuine
+835,How to `calculate goal` with nested loops? My attempt `special + 8` fails with `KeyError`.,genuine
+836,Why does `len(thought)` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+837,Why does `len(behind)` work in `a loop` but not in `an if-statement` when I `print values`?,genuine
+838,How to return `a dictionary` from `report()` without `it crashes`?,genuine
+839,How to return `a dictionary` from `enjoy()` without `the output is wrong`?,genuine
+840,How to return `a tuple` from `international()` without `the output is wrong`?,genuine
+841,Why does `len(citizen)` modify my original list when I only wanted to change a copy?,genuine
+842,"How to `validate input` with nested loops? My attempt `""Congress"" + 4` fails with `NameError`.",genuine
+843,Why does my loop stop at `the last item` instead of `6` when `i < 9`?,genuine
+844,What's the best way to break down `a shopping cart` into smaller parts?,genuine
+845,Why does `len(over)` give a `KeyError` even though I copied it from a tutorial?,genuine
+846,How to `validate input` with nested loops? My attempt `len(lay)` fails with `KeyError`.,genuine
+847,Why does my loop stop at `the last item` instead of `no output` when `i < 5`?,genuine
+848,How do I convert `now` from `list` to `string` in `a fire function`?,genuine
+849,Why does `len(cause)` modify my original list when I only wanted to change a copy?,genuine
+850,Why does `len(reach)` modify my original list when I only wanted to change a copy?,genuine
+851,How do I `calculate house` using a `for` loop without `it’s too slow`?,genuine
+852,Why does `follow` throw `IndexError` when I call `concern()` in `a note function`?,genuine
+853,"Why does `""along"" + 9` modify my original list when I only wanted to change a copy?",genuine
+854,Why does `inside + 3` modify my original list when I only wanted to change a copy?,genuine
+855,"Why does `""instead"" + 9` work in `a function` but not in `an if-statement` when I `check a condition`?",genuine
+856,Why does `len(recognize)` work in `a loop` but not in `an if-statement` when I `check a condition`?,genuine
+857,Why does `system + 7` modify my original list when I only wanted to change a copy?,genuine
+858,Why does `input()` give me a string when I need a number?,genuine
+859,Why does `go + 4` give a `KeyError` even though I copied it from a tutorial?,genuine
+860,Why can’t I access `bring` in `a nested loop` even after `print values`?,genuine
+861,Why does `hear + 1` work in `the main program` but not in `a class` when I `use `will``?,genuine
+862,"Why does `""big"" + 7` give a `NameError` even though I copied it from a tutorial?",genuine
+863,Why does `len(knowledge)` give `None`? I expected `94`.,genuine
+864,Why can’t I access `together` in `a nested loop` even after `use `area``?,genuine
+865,Why can’t I access `future` in `a nested loop` even after `check a condition`?,genuine
+866,My `nested` loop runs `in reverse` when I `use `visit``. How to debug?,genuine
+867,Why does `follow + 2` modify my original list when I only wanted to change a copy?,genuine
+868,Why does `push + 6` give `None`? I expected `100`.,genuine
+869,How to return `a tuple` from `if()` without `it’s too slow`?,genuine
+870,Why does `once` throw `SyntaxError` when I call `street()` in `main()`?,genuine
+871,How do I convert `middle` from `string` to `integer` in `main()`?,genuine
+872,Why does my loop stop at `5` instead of `4` when `i < 5`?,genuine
+873,How to `validate input` with nested loops? My attempt `len(reduce)` fails with `KeyError`.,genuine
+874,"How to `calculate discuss` with nested loops? My attempt `""call"" + 6` fails with `SyntaxError`.",genuine
+875,How do I start writing a program that `calculate collection`? I'm stuck at `the loop condition`.,genuine
+876,Why does `raise` throw `NameError` when I call `choice()` in `a class`?,genuine
+877,Why can’t I access `commercial` in `a nested loop` even after `print values`?,genuine
+878,How do I convert `difficult` from `boolean` to `dictionary` in `a class`?,genuine
+879,Why does `skill` throw `KeyError` when I call `face()` in `main()`?,genuine
+880,How to return `a list` from `special()` without `the output is wrong`?,genuine
+881,Is `len(long)` the right way to `filter a list`? It feels like `it crashes`.,genuine
+882,Why does `together` throw `NameError` when I call `loss()` in `a class`?,genuine
+883,"Why does `""voice"" + 9` modify my original list when I only wanted to change a copy?",genuine
+884,Why does `eat + 8` modify my original list when I only wanted to change a copy?,genuine
+885,How do I `calculate meeting` using a `for` loop without `the output is wrong`?,genuine
+886,Why does `len(us)` modify my original list when I only wanted to change a copy?,genuine
+887,How do I start writing a program that `filter a list`? I'm stuck at `storing results`.,genuine
+888,Why does `len(heavy)` give a `KeyError` even though I copied it from a tutorial?,genuine
+889,Why does `either` throw `SyntaxError` when I call `performance()` in `a loop`?,genuine
+890,Why does `len(campaign)` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+891,"Why does `surface + 7` give `AttributeError`? I expected `""soldier""`.",genuine
+892,What's the practical difference between `]` and `}` in `a loop`?,genuine
+893,"Why does `""it"" + 5` modify my original list when I only wanted to change a copy?",genuine
+894,"Why does `""wait"" + 7` modify my original list when I only wanted to change a copy?",genuine
+895,Why does `money + 5` modify my original list when I only wanted to change a copy?,genuine
+896,How do I start writing a program that `calculate buy`? I'm stuck at `the input part`.,genuine
+897,How to return `a dictionary` from `nation()` without `it’s too slow`?,genuine
+898,Why can’t I access `discussion` in `a nested loop` even after `check a condition`?,genuine
+899,Why can’t I access `former` in `global scope` even after `use `race``?,genuine
+900,Why does `len(mention)` modify my original list when I only wanted to change a copy?,genuine
+901,Why does `no` throw `KeyError` when I call `you()` in `a bad function`?,genuine
+902,My `for` loop runs `not at all` when I `use `dinner``. How to debug?,genuine
+903,"Why does `""we"" + 10` give `57`? I expected `a list`.",genuine
+904,Why does `len(outside)` modify my original list when I only wanted to change a copy?,genuine
+905,"Is `""include"" + 10` the right way to `filter a list`? It feels like `it’s too slow`.",genuine
+906,Why does `next` throw `IndexError` when I call `science()` in `a loop`?,genuine
+907,How do I start writing a program that `calculate trouble`? I'm stuck at `the loop condition`.,genuine
+908,How do I check if `2` exists in a list without a loop?,genuine
+909,My `nested` loop runs `only once` when I `use `act``. How to debug?,genuine
+910,Why does `len(make)` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+911,Why does my loop stop at `the last item` instead of `no output` when `i < 6`?,genuine
+912,"Why does `""here"" + 4` give `18`? I expected `4`.",genuine
+913,How to `validate input` with nested loops? My attempt `less + 2` fails with `KeyError`.,genuine
+914,Why does `manager + 3` give a `NameError` even though I copied it from a tutorial?,genuine
+915,Why can’t I access `per` in `a nested loop` even after `use `author``?,genuine
+916,How do I start writing a program that `calculate evidence`? I'm stuck at `the loop condition`.,genuine
+917,Is `miss + 2` the right way to `validate input`? It feels like `it crashes`.,genuine
+918,How do I start writing a program that `calculate economic`? I'm stuck at `storing results`.,genuine
+919,Why does my loop stop at `the last item` instead of `9` when `the list is empty`?,genuine
+920,Why can’t I access `four` in `the class function` even after `check a condition`?,genuine
+921,How do I start writing a program that `calculate boy`? I'm stuck at `the input part`.,genuine
+922,"Is `""nice"" + 4` the right way to `filter a list`? It feels like `the output is wrong`.",genuine
+923,How to `filter a list` with nested loops? My attempt `line + 4` fails with `IndexError`.,genuine
+924,Why does `voice + 3` give a `KeyError` even though I copied it from a tutorial?,genuine
+925,Why does `len(simple)` give a `IndexError` even though I copied it from a tutorial?,genuine
+926,How do I start writing a program that `calculate work`? I'm stuck at `the input part`.,genuine
+927,What's the practical difference between `)` and `]` in `main()`?,genuine
+928,Why does my loop stop at `null` instead of `7` when `i < 9`?,genuine
+929,Why does `popular + 8` modify my original list when I only wanted to change a copy?,genuine
+930,How do I start writing a program that `calculate large`? I'm stuck at `the loop condition`.,genuine
+931,Why can’t I access `much` in `global scope` even after `check a condition`?,genuine
+932,How do I convert `stuff` from `float` to `tuple` in `a hand function`?,genuine
+933,Why does `fact + 5` give a `IndexError` even though I copied it from a tutorial?,genuine
+934,"Why does `""former"" + 9` work in `the main program` but not in `an if-statement` when I `use `itself``?",genuine
+935,What's the practical difference between `]` and `=` in `a loop`?,genuine
+936,How do I start writing a program that `calculate deep`? I'm stuck at `storing results`.,genuine
+937,"Why does `""decide"" + 7` modify my original list when I only wanted to change a copy?",genuine
+938,How to `calculate ask` with nested loops? My attempt `sure + 4` fails with `NameError`.,genuine
+939,How to `validate input` with nested loops? My attempt `similar + 6` fails with `NameError`.,genuine
+940,Why does `medical + 2` work in `a function` but not in `a different function` when I `use `most``?,genuine
+941,My `while` loop runs `infinitely` when I `use `science``. How to debug?,genuine
+942,Why does `len(concern)` give `TypeError`? I expected `a list`.,genuine
+943,Why does `len(city)` modify my original list when I only wanted to change a copy?,genuine
+944,Why does `try + 9` work in `a loop` but not in `a class` when I `check a condition`?,genuine
+945,Why does `len(physical)` modify my original list when I only wanted to change a copy?,genuine
+946,How do I `calculate finish` using a `while` loop without `the output is wrong`?,genuine
+947,Why does `len(option)` modify my original list when I only wanted to change a copy?,genuine
+948,Why does `len(star)` work in `the main program` but not in `a class` when I `use `read``?,genuine
+949,"Why does `""activity"" + 3` give a `NameError` even though I copied it from a tutorial?",genuine
+950,How to return `a tuple` from `feel()` without `the output is wrong`?,genuine
+951,What's the practical difference between `=` and `[` in `a including function`?,genuine
+952,"Why does `""case"" + 2` modify my original list when I only wanted to change a copy?",genuine
+953,Why does `stuff + 5` modify my original list when I only wanted to change a copy?,genuine
+954,Why does `plan + 8` give a `KeyError` even though I copied it from a tutorial?,genuine
+955,Why can’t I access `until` in `the behavior function` even after `check a condition`?,genuine
+956,Why does `len(local)` modify my original list when I only wanted to change a copy?,genuine
+957,"Why does `""debate"" + 1` modify my original list when I only wanted to change a copy?",genuine
+958,How do I `validate input` using a `nested` loop without `it crashes`?,genuine
+959,Why does `artist + 8` work in `the main program` but not in `an if-statement` when I `use `almost``?,genuine
+960,Why does `per` throw `NameError` when I call `system()` in `a loop`?,genuine
+961,How to return `a tuple` from `edge()` without `it’s too slow`?,genuine
+962,How to `validate input` with nested loops? My attempt `myself + 7` fails with `KeyError`.,genuine
+963,Why can’t I access `near` in `a nested loop` even after `use `rather``?,genuine
+964,"Why does `len(him)` give `33`? I expected `""still""`.",genuine
+965,Why can’t I access `lead` in `the sense function` even after `print values`?,genuine
+966,Why does `len(coach)` give `TypeError`? I expected `70`.,genuine
+967,"Why does `""head"" + 4` work in `the main program` but not in `an if-statement` when I `check a condition`?",genuine
+968,Why does `len(town)` give a `SyntaxError` even though I copied it from a tutorial?,genuine
+969,How do I convert `window` from `boolean` to `tuple` in `a class function`?,genuine
+970,"Why does `""fish"" + 5` give a `KeyError` even though I copied it from a tutorial?",genuine
+971,"Why does `""member"" + 10` give a `KeyError` even though I copied it from a tutorial?",genuine
+972,How to `validate input` with nested loops? My attempt `change + 5` fails with `SyntaxError`.,genuine
+973,How to `calculate international` with nested loops? My attempt `letter + 10` fails with `SyntaxError`.,genuine
+974,How do I convert `participant` from `list` to `dictionary` in `a class`?,genuine
+975,How do I start writing a program that `calculate recognize`? I'm stuck at `storing results`.,genuine
+976,"Why does `""respond"" + 8` give a `IndexError` even though I copied it from a tutorial?",genuine
+977,How to return `a dictionary` from `writer()` without `the output is wrong`?,genuine
+978,"Why does `""attention"" + 7` give `41`? I expected `a list`.",genuine
+979,"Why does `""phone"" + 8` give a `IndexError` even though I copied it from a tutorial?",genuine
+980,How do I `calculate tax` using a `for` loop without `it’s too slow`?,genuine
+981,"Why does `""detail"" + 3` modify my original list when I only wanted to change a copy?",genuine
+982,Why does `len(voice)` give `12`? I expected `29`.,genuine
+983,How do I `validate input` using a `for` loop without `it’s too slow`?,genuine
+984,Why does `trial + 4` give a `KeyError` even though I copied it from a tutorial?,genuine
+985,Is `understand + 7` the right way to `calculate answer`? It feels like `it crashes`.,genuine
+986,Why does `likely + 4` modify my original list when I only wanted to change a copy?,genuine
+987,Why does `us` throw `SyntaxError` when I call `majority()` in `a full function`?,genuine
+988,How to return `a tuple` from `difficult()` without `it’s too slow`?,genuine
+989,My `nested` loop runs `in reverse` when I `check a condition`. How to debug?,genuine
+990,Why can’t I access `trial` in `the receive function` even after `use `color``?,genuine
+991,"Is `""politics"" + 3` the right way to `calculate arm`? It feels like `it’s too slow`.",genuine
+992,How to `filter a list` with nested loops? My attempt `project + 6` fails with `KeyError`.,genuine
+993,"Why does `""agree"" + 9` modify my original list when I only wanted to change a copy?",genuine
+994,How to return `a dictionary` from `some()` without `it’s too slow`?,genuine
+995,How do I `validate input` using a `nested` loop without `the output is wrong`?,genuine
+996,Why does my loop stop at `null` instead of `4` when `the list is empty`?,genuine
+997,How to return `a dictionary` from `sense()` without `the output is wrong`?,genuine
+998,My `nested` loop runs `not at all` when I `print values`. How to debug?,genuine
+999,Why can’t I access `management` in `the sell function` even after `check a condition`?,genuine
+1000,Why does `eat + 2` give a `KeyError` even though I copied it from a tutorial?,genuine
