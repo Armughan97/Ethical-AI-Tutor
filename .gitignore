@@ -1,1 +1,4 @@
 myvenv
+
+# intent classifier trained models (can generate again using Intent-Classifier/BERT_Intent_Classifier file)
+*.bin
