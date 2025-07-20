@@ -24,6 +24,9 @@ import os
 import time
 import requests
 from fastapi import HTTPException
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -42,7 +45,7 @@ OLLAMA_API_URL = "http://localhost:11434"
 
 # ─── Globals ────────────────────────────────────────────────────────────────
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY","AIzaSyAnSQUE5kyA0JcxWxEHjj1DpetyenRfsE0")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_MODEL   = "gemini-2.0-flash"   # or gemini-2.5-flash, etc.
 
 # ─── Gemini REST Call ──────────────────────────────────────────────────────
