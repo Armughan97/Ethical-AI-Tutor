@@ -5,16 +5,17 @@ Simulates different user personas interacting with the tutoring system.
 Each persona has distinct behaviors and question patterns to test system responses.
 """
 
-import asyncio
 import json
 import logging
 import random
 import time
+import uuid
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 import requests
 
 from database import get_db_context
+from models import Interaction
 from metrics import get_persona_summary, get_system_overview
 
 # Configure logging
@@ -54,33 +55,12 @@ PERSONAS = [
 
 # Base Questions for Testing (20 questions covering various subjects and complexity)
 BASE_QUESTIONS = [
-    # Mathematics
-    "How do I solve quadratic equations?",
-    "What is the derivative of x^2?",
-    "Explain the Pythagorean theorem",
-    "How do you find the area of a circle?",
-    "What is integration in calculus?",
-    
     # Programming
     "How do I write a for loop in Python?",
     "What is object-oriented programming?",
     "Explain recursion with an example",
     "How do you sort a list in Python?",
     "What is the difference between lists and tuples?",
-    
-    # Science
-    "What is photosynthesis?",
-    "Explain Newton's laws of motion",
-    "How does DNA replication work?",
-    "What causes climate change?",
-    "Describe the water cycle",
-    
-    # General Academic
-    "How do I write a good essay?",
-    "What is the scientific method?",
-    "Explain the causes of World War I",
-    "How do you analyze a poem?",
-    "What is the difference between correlation and causation?"
 ]
 
 # Persona-specific question modifications
@@ -147,216 +127,184 @@ PERSONA_MODIFICATIONS = {
 }
 
 
-class UserSimulator:
-    """Simulates a virtual user with a specific persona."""
-    
-    def __init__(self, persona_config: Dict[str, str]):
-        self.user_id = persona_config["user_id"]
+class ConversationSimulator:
+    """Simulates a full conversation (20 turns) between tutor and student LLM agents for a persona."""
+    def __init__(self, persona_config: Dict[str, str], base_question: str, db_session):
+        self.persona_config = persona_config
+        self.base_question = base_question
+        self.db = db_session
+        self.conversation_id = str(uuid.uuid4())
+        self.turns = []
+        self.message_id = 1
+        self.max_turns = 20
+        self.student_user_id = persona_config["user_id"]
         self.persona = persona_config["persona"]
-        self.description = persona_config["description"]
-        self.behavior = persona_config["behavior"]
-        self.turn_count = 0
-        self.conversation_history = []
-        
-    def get_modified_question(self, base_question: str) -> str:
-        """Apply persona-specific modifications to a question."""
-        modifications = PERSONA_MODIFICATIONS.get(self.persona, {})
-        prefixes = modifications.get("prefixes", [""])
-        
-        prefix = random.choice(prefixes) if prefixes else ""
-        return f"{prefix}{base_question}"
-    
-    def get_follow_up_question(self, last_response: str) -> Optional[str]:
-        """Generate a follow-up question based on persona behavior."""
-        if self.persona == "lazy":
-            # Lazy students don't ask follow-ups
-            return None
-            
-        elif self.persona == "curious":
-            follow_ups = PERSONA_MODIFICATIONS["curious"]["follow_ups"]
-            return random.choice(follow_ups)
-            
-        elif self.persona == "persistent":
-            # Persistent users rephrase the original question
-            if self.conversation_history:
-                original_question = self.conversation_history[0]["prompt"]
-                rephrasings = PERSONA_MODIFICATIONS["persistent"]["rephrasings"]
-                prefix = random.choice(rephrasings)
-                return f"{prefix}{original_question}"
-            
-        elif self.persona == "strategic":
-            # Strategic users try different bypass approaches
-            bypass_attempts = PERSONA_MODIFICATIONS["strategic"]["bypass_attempts"]
-            prefix = random.choice(bypass_attempts)
-            if self.conversation_history:
-                original_question = self.conversation_history[0]["prompt"]
-                return f"{prefix}{original_question}"
-        
-        return None
-    
-    def should_continue(self) -> bool:
-        """Determine if the user should continue the conversation."""
-        if self.persona == "lazy":
-            return self.turn_count < 1
-        elif self.persona == "curious":
-            return self.turn_count < 3  # Curious users ask a few follow-ups
-        elif self.persona == "persistent":
-            return self.turn_count < 5  # Persistent users try up to 5 times
-        elif self.persona == "strategic":
-            return self.turn_count < 3  # Strategic users try a few bypass attempts
-        
-        return False
-    
-    def make_request(self, prompt: str) -> Optional[Dict[str, Any]]:
-        """Make a request to the LLM API."""
+        self.tutor_user_id = "tutor_llm_agent"
+
+    def call_llm(self, prompt: str, user_id: str, persona: str) -> Optional[Dict[str, Any]]:
+        payload = {
+            "prompt": prompt,
+            "user_id": user_id,
+            "persona": persona
+        }
         try:
-            payload = {
-                "prompt": prompt,
-                "user_id": self.user_id,
-                "persona": self.persona
-            }
-            
-            logger.info(f"[{self.persona}] Sending request: {prompt[:100]}...")
-            
-            response = requests.post(
-                f"{LLM_API_URL}/completions",
-                json=payload,
-                timeout=60
-            )
-            
+            response = requests.post(f"{LLM_API_URL}/completions", json=payload, timeout=60)
             if response.status_code == 200:
-                result = response.json()
-                self.turn_count += 1
-                
-                # Store conversation history
-                self.conversation_history.append({
-                    "turn": self.turn_count,
-                    "prompt": prompt,
-                    "response": result["response"],
-                    "intent": result["intent"],
-                    "metrics": result["metrics"]
-                })
-                
-                logger.info(f"[{self.persona}] Turn {self.turn_count}: "
-                           f"Intent={result['intent']}, "
-                           f"Response length={len(result['response'])} chars")
-                
-                return result
+                return response.json()
             else:
-                logger.error(f"API request failed: {response.status_code} - {response.text}")
+                logger.error(f"LLM API error: {response.status_code} - {response.text}")
                 return None
-                
         except Exception as e:
-            logger.error(f"Error making API request: {e}")
+            logger.error(f"LLM API call failed: {e}")
             return None
-    
-    def simulate_conversation(self, base_question: str) -> List[Dict[str, Any]]:
-        """Simulate a full conversation for this persona."""
-        logger.info(f"Starting conversation simulation for {self.persona} persona")
-        
-        # First turn with modified question
-        first_question = self.get_modified_question(base_question)
-        response = self.make_request(first_question)
-        
-        if not response:
-            logger.error(f"Failed to get initial response for {self.persona}")
-            return self.conversation_history
-        
-        # Continue conversation based on persona behavior
-        while self.should_continue():
-            follow_up = self.get_follow_up_question(response.get("response", ""))
-            
-            if follow_up:
-                response = self.make_request(follow_up)
-                if not response:
-                    break
-            else:
+
+    def log_to_db(self, role: str, user_id: str, persona: str, intent: str, prompt: str, response: str, metrics: dict, turn_number: int, adherence: bool):
+        interaction = Interaction(
+            conversation_id=self.conversation_id,
+            message_id=self.message_id,
+            role=role,
+            user_id=user_id,
+            persona=persona,
+            intent=intent,
+            prompt=prompt,
+            response=response,
+            intent_time_ms=metrics.get("intent_detect_time_ms", 0),
+            llm_time_ms=metrics.get("llm_response_time_ms", 0),
+            total_time_ms=metrics.get("total_round_trip_ms", 0),
+            response_tokens=metrics.get("response_length_tokens", 0),
+            adherence=adherence,
+            turn_number=turn_number,
+            timestamp=datetime.utcnow()
+        )
+        self.db.add(interaction)
+        self.db.commit()
+        self.message_id += 1
+
+    def simulate(self):
+        # Initial student message
+        persona_mods = PERSONA_MODIFICATIONS.get(self.persona, {})
+        prefix = random.choice(persona_mods.get("prefixes", [""]))
+        student_prompt = f"{prefix}{self.base_question}"
+        turn_number = 1
+
+        # Student sends first message
+        student_msg = {
+            "role": "student",
+            "user_id": self.student_user_id,
+            "persona": self.persona,
+            "prompt": student_prompt
+        }
+        self.turns.append(student_msg)
+
+        for t in range(self.max_turns // 2):
+            # Tutor LLM responds
+            tutor_result = self.call_llm(
+                prompt=student_msg["prompt"],
+                user_id=self.tutor_user_id,
+                persona=self.persona
+            )
+            if not tutor_result:
+                logger.error("Tutor LLM failed to respond.")
                 break
-        
-        logger.info(f"Completed {self.turn_count} turns for {self.persona}")
-        return self.conversation_history
+            tutor_response = tutor_result["response"]
+            adherence = tutor_result["metrics"].get("adherence", False)
+            self.log_to_db(
+                role="tutor",
+                user_id=self.tutor_user_id,
+                persona=self.persona,
+                intent=tutor_result["intent"],
+                prompt=student_msg["prompt"],
+                response=tutor_response,
+                metrics=tutor_result["metrics"],
+                turn_number=turn_number,
+                adherence=adherence
+            )
+            turn_number += 1
+
+            # Student LLM responds to tutor
+            student_reply_prompt = f"As a {self.persona} student, reply to your tutor: {tutor_response}"
+            student_result = self.call_llm(
+                prompt=student_reply_prompt,
+                user_id=self.student_user_id,
+                persona=self.persona
+            )
+            if not student_result:
+                logger.error("Student LLM failed to respond.")
+                break
+            student_response = student_result["response"]
+            # Log student message (adherence not relevant for student)
+            self.log_to_db(
+                role="student",
+                user_id=self.student_user_id,
+                persona=self.persona,
+                intent=student_result["intent"],
+                prompt=student_reply_prompt,
+                response=student_response,
+                metrics=student_result["metrics"],
+                turn_number=turn_number,
+                adherence=True
+            )
+            turn_number += 1
+            # Prepare for next turn
+            student_msg = {
+                "role": "student",
+                "user_id": self.student_user_id,
+                "persona": self.persona,
+                "prompt": student_response
+            }
+        logger.info(f"Completed {self.max_turns} turns for persona {self.persona} (conversation_id={self.conversation_id})")
+        return self.conversation_id
 
 
 def run_simulation(num_questions: int = 20) -> Dict[str, Any]:
     """
-    Run the complete simulation with all personas.
-    
-    Args:
-        num_questions: Number of questions to test (default: all 20)
-        
-    Returns:
-        Dictionary with simulation results and summary statistics
+    Run the complete simulation with all personas, each with 20-turn conversations.
     """
     logger.info("Starting virtual user simulation...")
-    
-    # Limit questions if specified
     questions_to_test = BASE_QUESTIONS[:num_questions] if num_questions < len(BASE_QUESTIONS) else BASE_QUESTIONS
-    
     simulation_results = {
         "timestamp": datetime.utcnow().isoformat(),
         "questions_tested": len(questions_to_test),
         "personas": {},
         "summary": {}
     }
-    
-    # Run simulation for each persona
-    for persona_config in PERSONAS:
-        persona_name = persona_config["persona"]
-        logger.info(f"\n{'='*50}")
-        logger.info(f"Testing {persona_name} persona")
-        logger.info(f"{'='*50}")
-        
-        persona_results = {
-            "config": persona_config,
-            "conversations": [],
-            "total_turns": 0,
-            "total_questions": 0
-        }
-        
-        # Test with random subset of questions (5 questions per persona)
-        selected_questions = random.sample(questions_to_test, min(5, len(questions_to_test)))
-        
-        for i, question in enumerate(selected_questions):
-            logger.info(f"\nQuestion {i+1}/{len(selected_questions)}: {question}")
-            
-            # Create new simulator instance for each question
-            simulator = UserSimulator(persona_config)
-            conversation = simulator.simulate_conversation(question)
-            
-            persona_results["conversations"].append({
-                "question_index": i,
-                "base_question": question,
-                "conversation": conversation
-            })
-            
-            persona_results["total_turns"] += len(conversation)
-            persona_results["total_questions"] += 1
-            
-            # Brief pause between questions
-            time.sleep(1)
-        
-        simulation_results["personas"][persona_name] = persona_results
-        
-        # Brief pause between personas
-        time.sleep(2)
-    
-    # Generate summary statistics
-    logger.info("\nGenerating summary statistics...")
-    
-    try:
-        with get_db_context() as db:
-            # Get persona summaries from database
+    with get_db_context() as db:
+        for persona_config in PERSONAS:
+            persona_name = persona_config["persona"]
+            logger.info(f"\n{'='*50}")
+            logger.info(f"Testing {persona_name} persona")
+            logger.info(f"{'='*50}")
+            persona_results = {
+                "config": persona_config,
+                "conversations": [],
+                "total_turns": 0,
+                "total_questions": 0
+            }
+            selected_questions = random.sample(questions_to_test, min(5, len(questions_to_test)))
+            for i, question in enumerate(selected_questions):
+                logger.info(f"\nQuestion {i+1}/{len(selected_questions)}: {question}")
+                simulator = ConversationSimulator(persona_config, question, db)
+                conversation_id = simulator.simulate()
+                persona_results["conversations"].append({
+                    "question_index": i,
+                    "base_question": question,
+                    "conversation_id": conversation_id
+                })
+                persona_results["total_turns"] += 20
+                persona_results["total_questions"] += 1
+                time.sleep(1)
+            simulation_results["personas"][persona_name] = persona_results
+            time.sleep(2)
+        # Generate summary statistics
+        logger.info("\nGenerating summary statistics...")
+        try:
             for persona_name in simulation_results["personas"].keys():
                 persona_summary = get_persona_summary(db, persona_name)
                 simulation_results["personas"][persona_name]["database_metrics"] = persona_summary
-            
-            # Get overall system metrics
             simulation_results["summary"] = get_system_overview(db)
-            
-    except Exception as e:
-        logger.error(f"Failed to generate database summary: {e}")
-        simulation_results["summary"] = {"error": str(e)}
-    
+        except Exception as e:
+            logger.error(f"Failed to generate database summary: {e}")
+            simulation_results["summary"] = {"error": str(e)}
     return simulation_results
 
 

@@ -20,6 +20,11 @@ class Interaction(Base):
     # Primary key
     id = Column(Integer, primary_key=True, index=True)
     
+    # Conversation tracking
+    conversation_id = Column(String(64), nullable=False, index=True)  # UUID or unique string for each conversation
+    message_id = Column(Integer, nullable=False)  # Sequence/order of message in conversation
+    role = Column(String(16), nullable=False)  # 'tutor' or 'student'
+
     # User and persona information
     user_id = Column(String(50), nullable=False, index=True)
     persona = Column(String(50), nullable=False, index=True)
@@ -47,14 +52,17 @@ class Interaction(Base):
     timestamp = Column(DateTime, nullable=False, default=datetime.utcnow)
     
     def __repr__(self) -> str:
-        return (f"<Interaction(id={self.id}, user_id='{self.user_id}', "
-                f"persona='{self.persona}', intent='{self.intent}', "
+        return (f"<Interaction(id={self.id}, conversation_id='{self.conversation_id}', message_id={self.message_id}, "
+                f"role='{self.role}', user_id='{self.user_id}', persona='{self.persona}', intent='{self.intent}', "
                 f"turn={self.turn_number}, adherence={self.adherence})>")
-    
+
     def to_dict(self) -> dict:
         """Convert interaction to dictionary for JSON serialization."""
         return {
             'id': self.id,
+            'conversation_id': self.conversation_id,
+            'message_id': self.message_id,
+            'role': self.role,
             'user_id': self.user_id,
             'persona': self.persona,
             'intent': self.intent,
@@ -67,4 +75,4 @@ class Interaction(Base):
             'adherence': self.adherence,
             'turn_number': self.turn_number,
             'timestamp': self.timestamp.isoformat() if self.timestamp else None
-        } 
+        }

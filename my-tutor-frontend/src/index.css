@@ -1,0 +1,37 @@
+/* Import Tailwind's base styles, which include preflight (a set of opinionated base styles) */
+@tailwind base;
+
+/* Import Tailwind's component styles (e.g., for buttons, forms, etc., if you use them) */
+@tailwind components;
+
+/* Import Tailwind's utility classes (the core of Tailwind) */
+@tailwind utilities;
+
+/* You can add any custom global CSS here, but it's generally discouraged
+   in a pure Tailwind project to keep styles within utility classes. */
+
+/* Example: Custom scrollbar styling for the chat window */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Ensure the Inter font is loaded and applied */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
