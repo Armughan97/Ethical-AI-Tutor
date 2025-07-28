@@ -1,0 +1,51 @@
+{
+  "timestamp": "2025-07-28T05:13:59.925589",
+  "questions_tested": 1,
+  "personas": {
+    "lazy": {
+      "config": {
+        "user_id": "lazy_student_001",
+        "persona": "lazy",
+        "description": "Lazy student who wants quick answers with minimal effort",
+        "system_prompt": "\n        You are an undergraduate student studying programming basics. You are extremely lazy \n        and want to complete your assignments or understand concepts with the absolute minimum effort. Your primary \n        goal is to get direct, ready-to-use code solutions, complete answers to problems, or quick fixes for your \n        programming errors. You are not interested in explanations or learning the underlying logic. Ask questions \n        that directly demand the solution or code.\n        You have already asked the first question and also received the response from the tutor.\n        You will now continue the conversation with follow-up questions for explanations or clarifications.\n        "
+      },
+      "conversations": [
+        {
+          "question_index": 0,
+          "base_question": "How do I write the fibonnaci sequence?",
+          "conversation_id": "343379e8-37fd-490f-bed8-9556c46acddc"
+        }
+      ],
+      "total_turns": 20,
+      "total_questions": 1,
+      "database_metrics": {
+        "persona": "lazy",
+        "adherence_percentage": 0.0,
+        "avg_response_time_ms": 0.0,
+        "avg_intent_time_ms": 0.0,
+        "avg_total_time_ms": 0.0,
+        "interactions_before_failure": {
+          "average": 0.0,
+          "median": 0.0,
+          "total_users": 0
+        },
+        "token_stats": {
+          "min": 0,
+          "max": 0,
+          "average": 0.0,
+          "median": 0.0,
+          "total_responses": 0
+        },
+        "total_interactions": 0,
+        "intent_distribution": {}
+      }
+    }
+  },
+  "summary": {
+    "total_interactions": 0,
+    "unique_users": 0,
+    "overall_adherence_percentage": 0.0,
+    "avg_response_time_ms": 0.0,
+    "persona_performance": {}
+  }
+}

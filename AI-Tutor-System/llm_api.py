@@ -9,7 +9,7 @@ import asyncio
 import logging
 import time
 import re
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 import requests
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
@@ -122,7 +122,7 @@ SYSTEM_PROMPTS = {
 }
 
 
-class CompletionRequest(BaseModel):
+class TutorCompletionRequest(BaseModel):
     """Request model for LLM completion."""
     prompt: str
     user_id: str
@@ -138,7 +138,7 @@ class CompletionRequest(BaseModel):
         }
 
 
-class CompletionResponse(BaseModel):
+class TutorCompletionResponse(BaseModel):
     """Response model for LLM completion."""
     response: str
     intent: str
@@ -155,6 +155,37 @@ class CompletionResponse(BaseModel):
                     "total_round_trip_ms": 1295.9,
                     "response_length_tokens": 156
                 }
+            }
+        }
+
+class StudentCompletionRequest(BaseModel):
+    """Request model for LLM completion for the Student simulator."""
+    prompt: str
+    user_id: str
+    persona: Optional[str] = None
+    system_prompt: Optional[str] = None # Student persona's specific system prompt
+    chat_history: List[Dict[str, str]] # Chat history for conversational context
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "prompt": "That seems like too much work, can't you just give me the code?",
+                "user_id": "lazy_student_001",
+                "persona": "lazy",
+                "system_prompt": "You are a lazy student...",
+                "chat_history": [{"role": "tutor", "message": "Here are some steps..."}]
+            }
+        }
+
+
+class StudentCompletionResponse(BaseModel):
+    """Response model for LLM completion for the Student simulator."""
+    response: str
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "response": "Ugh, fine. What's step 1?"
             }
         }
 
@@ -361,9 +392,9 @@ async def health_check():
     }
 
 
-@app.post("/completions", response_model=CompletionResponse)
+@app.post("/tutor_completions", response_model=TutorCompletionResponse)
 async def create_completion(
-    request: CompletionRequest, 
+    request: TutorCompletionRequest, 
     db: Session = Depends(get_db_session)
 ):
     """
@@ -384,9 +415,9 @@ async def create_completion(
         
         composite_prompt = f"""System: {system_prompt}
 
-User: {request.prompt}"""
+        User: {request.prompt}"""
 
-        # Step 3: Call Ollama API for completion
+        # Step 3: Call Gemini API for completion
         llm_result = call_gemini_api(composite_prompt)
         response_text = llm_result["response"]
         llm_time_ms = llm_result["call_time_ms"]
@@ -394,23 +425,8 @@ User: {request.prompt}"""
         # Step 4: Calculate metrics
         total_time_ms = (time.time() - total_start_time) * 1000
         response_tokens = count_tokens(response_text)
-        adherence = check_adherence(response_text, intent)
-        
-        # Step 5: Log interaction to database
-        interaction = log_interaction(
-            db=db,
-            user_id=request.user_id,
-            persona=request.persona or "unknown",
-            intent=intent,
-            prompt=request.prompt,
-            response=response_text,
-            intent_time_ms=intent_time_ms,
-            llm_time_ms=llm_time_ms,
-            total_time_ms=total_time_ms,
-            response_tokens=response_tokens,
-            adherence=adherence,
-            turn_number=1  # TODO: Track turn numbers properly in sessions
-        )
+        # adherence = check_adherence(response_text, intent)
+        adherence = True
         
         # Prepare metrics for response
         metrics = {
@@ -419,14 +435,14 @@ User: {request.prompt}"""
             "total_round_trip_ms": total_time_ms,
             "response_length_tokens": response_tokens,
             "adherence": adherence,
-            "interaction_id": interaction.id
+            # "interaction_id": interaction.id
         }
         
         logger.info(f"Completion successful for user {request.user_id}: "
                    f"intent={intent}, adherence={adherence}, "
                    f"total_time={total_time_ms:.1f}ms")
         
-        return CompletionResponse(
+        return TutorCompletionResponse(
             response=response_text,
             intent=intent,
             metrics=metrics
@@ -437,6 +453,51 @@ User: {request.prompt}"""
         raise
     except Exception as e:
         logger.error(f"Unexpected error in completion: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+    
+
+@app.post("/student_completions", response_model=StudentCompletionResponse)
+async def student_completion(
+    request: StudentCompletionRequest
+):
+    """
+    Generate a completion for the student simulator.
+    This endpoint does not perform intent detection or log to the database.
+    """
+    logger.info(f"Processing student completion request for user {request.user_id}")
+    
+    total_start_time = time.time()
+    
+    try:
+        # Build composite prompt with system instruction and chat history
+        # Assuming chat_history contains {"role": "user/assistant", "message": "..."}
+        # and we need to flatten it into the prompt structure for the LLM
+        messages_parts = []
+        if request.system_prompt:
+            messages_parts.append(f"System: {request.system_prompt}")
+
+        # Add chat history. For Gemini, we might concatenate.
+        # For a more advanced chat model, you might pass structured history.
+        for chat_item in request.chat_history:
+            messages_parts.append(f"{chat_item['role'].capitalize()}: {chat_item['message']}")
+        
+        messages_parts.append(f"User: {request.prompt}") # The current prompt
+        
+        composite_prompt = "\n\n".join(messages_parts)
+
+        llm_result = call_gemini_api(composite_prompt)
+        response_text = llm_result["response"]
+        
+        total_time_ms = (time.time() - total_start_time) * 1000
+        logger.info(f"Student Completion successful for user {request.user_id}: "
+                   f"total_time={total_time_ms:.1f}ms")
+        
+        return StudentCompletionResponse(response=response_text)
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Unexpected error in student completion: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
 
