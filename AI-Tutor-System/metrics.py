@@ -82,6 +82,26 @@ def log_interaction(
         db.rollback()
         raise
 
+def get_persona_accuracy_percentage(
+    db: Session,
+    user_id: Optional[str] = None,
+    persona: Optional[str] = None
+) -> float:
+    """
+    Calculate persona accuracy percentage (persona == predicted_persona).
+    """
+    query = db.query(Interaction)
+    if user_id:
+        query = query.filter(Interaction.user_id == user_id)
+    if persona:
+        query = query.filter(Interaction.persona == persona)
+    total = query.count()
+    if total == 0:
+        return 0.0
+    correct = query.filter(Interaction.persona == Interaction.predicted_persona).count()
+    percentage = (correct / total) * 100
+    logger.info(f"Persona accuracy: {correct}/{total} = {percentage:.1f}%")
+    return percentage
 
 def get_adherence_percentage(
     db: Session,
@@ -117,6 +137,36 @@ def get_adherence_percentage(
     
     return percentage
 
+def get_score_stats(
+    db: Session,
+    score_type: str = "pedagogical",
+    user_id: Optional[str] = None,
+    persona: Optional[str] = None
+) -> dict:
+    """
+    Get min, max, average, and median for pedagogical_score or persona_score.
+    """
+    if score_type == "pedagogical":
+        column = Interaction.pedagogical_score
+    elif score_type == "persona":
+        column = Interaction.persona_score
+    else:
+        raise ValueError("score_type must be 'pedagogical' or 'persona'")
+    query = db.query(column)
+    if user_id:
+        query = query.filter(Interaction.user_id == user_id)
+    if persona:
+        query = query.filter(Interaction.persona == persona)
+    scores = [row[0] for row in query.all()]
+    if not scores:
+        return {"min": 0.0, "max": 0.0, "average": 0.0, "median": 0.0, "total": 0}
+    return {
+        "min": min(scores),
+        "max": max(scores),
+        "average": mean(scores),
+        "median": median(scores),
+        "total": len(scores)
+    }
 
 def get_avg_response_time(
     db: Session,
@@ -267,7 +317,10 @@ def get_persona_summary(db: Session, persona: str) -> Dict[str, Any]:
         "avg_intent_time_ms": get_avg_response_time(db, persona=persona, metric_type="intent"),
         "avg_total_time_ms": get_avg_response_time(db, persona=persona, metric_type="total"),
         "interactions_before_failure": get_interactions_before_failure(db, persona=persona),
-        "token_stats": get_token_stats(db, persona=persona)
+        "token_stats": get_token_stats(db, persona=persona),
+        "persona_accuracy_percentage": get_persona_accuracy_percentage(db, persona=persona),
+        "pedagogical_score_stats": get_score_stats(db, score_type="pedagogical", persona=persona),
+        "persona_score_stats": get_score_stats(db, score_type="persona", persona=persona),
     }
     
     # Add total interactions count
@@ -355,7 +408,10 @@ def get_system_overview(db: Session) -> Dict[str, Any]:
             "unique_users": 0,
             "overall_adherence_percentage": 0.0,
             "avg_response_time_ms": 0.0,
-            "persona_performance": {}
+            "persona_performance": {},
+            "overall_persona_accuracy_percentage": 0.0,
+            "overall_pedagogical_score_stats": {},
+            "overall_persona_score_stats": {},
         }
     
     # Get personas
@@ -379,5 +435,8 @@ def get_system_overview(db: Session) -> Dict[str, Any]:
         "intent_distribution": dict(db.query(
             Interaction.intent, 
             func.count(Interaction.id)
-        ).group_by(Interaction.intent).all())
+        ).group_by(Interaction.intent).all()),
+        "overall_persona_accuracy_percentage": get_persona_accuracy_percentage(db),
+        "overall_pedagogical_score_stats": get_score_stats(db, score_type="pedagogical"),
+        "overall_persona_score_stats": get_score_stats(db, score_type="persona")
     } 

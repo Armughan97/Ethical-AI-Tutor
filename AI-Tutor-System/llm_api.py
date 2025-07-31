@@ -15,6 +15,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 import uvicorn
+import json
 
 from database import get_db_session, init_database
 from models import Interaction
@@ -28,9 +29,60 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Configure your application's logger
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
+# Define Uvicorn log config
+# This ensures Uvicorn's logs (including access logs) go to stdout
+log_config = {
+    "version": 1,
+    "disable_existing_loggers": False, # Keep existing loggers intact
+    "formatters": {
+        "standard": {
+            "()": "uvicorn.logging.DefaultFormatter",
+            "fmt": "%(levelname)s - %(name)s - %(message)s",
+            "use_colors": True,
+        },
+        "access": {
+            "()": "uvicorn.logging.AccessFormatter",
+            "fmt": '%(levelname)s - %(name)s - %(message)s', # Uvicorn's default access log format
+            "use_colors": True,
+        },
+    },
+    "handlers": {
+        "default": {
+            "formatter": "standard",
+            "class": "logging.StreamHandler",
+            "stream": "ext://sys.stdout", # Send to stdout
+        },
+        "access": {
+            "formatter": "access",
+            "class": "logging.StreamHandler",
+            "stream": "ext://sys.stdout", # Send to stdout
+        },
+    },
+    "loggers": {
+        # Your application's logger (configured above by basicConfig)
+        "": {  # Root logger
+            "handlers": ["default"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        # Uvicorn's error logger
+        "uvicorn.error": {
+            "handlers": ["default"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        # Uvicorn's access logger
+        "uvicorn.access": {
+            "handlers": ["access"],
+            "level": "INFO", # Set to INFO to see 200 OK messages
+            "propagate": False,
+        },
+    },
+}
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -46,7 +98,7 @@ OLLAMA_API_URL = "http://localhost:11434"
 # ─── Globals ────────────────────────────────────────────────────────────────
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_MODEL   = "gemini-2.0-flash"   # or gemini-2.5-flash, etc.
+GEMINI_MODEL   = "gemini-2.5-flash"   # or gemini-2.5-flash, etc.
 
 # ─── Gemini REST Call ──────────────────────────────────────────────────────
 
@@ -104,36 +156,126 @@ def call_gemini_api(prompt: str) -> Dict[str, Any]:
         "model": GEMINI_MODEL
     }
 
-# System prompts based on intent
-SYSTEM_PROMPTS = {
-    "Genuine": """You are a helpful and knowledgeable programming tutor. The user has a genuine question and wants to learn. 
-    Provide clear, educational explanations. Include examples and step-by-step reasoning when appropriate. 
-    Encourage further questions and learning. However, you must also remember not to accidentally provide code to the student.""",
-    
-    "Manipulative": """You are a careful programming tutor who detects manipulation attempts. The user may be trying to get you to do their homework or provide answers without learning.
-    Provide guidance and hints rather than direct answers. Ask clarifying questions to encourage the user to think. 
-    DO NOT provide code solutions or complete answers. Focus on teaching concepts and problem-solving approaches.
-    Follow this format: first, provide brief guidance or hints, encouraging thinking like discussed earlier. Next, divide the problem 
-    into actionable, numbered steps that the student can follow one by one to get the solution themselves.""",
-    
-    "Spam": """You are a professional tutor who has detected a spam or inappropriate message. 
-    Politely redirect the conversation back to educational topics. Keep your response brief and professional.
-    Do not engage with the inappropriate content. Offer to help with legitimate educational questions."""
-}
+SYSTEM_PROMPT_TEMPLATE = """
+    You are an AI programming tutor. You will receive three things:
 
+    1) [Intent: <Genuine or Manipulative>]  
+    2) [Persona: <Lazy, Curious, Persistent, or Strategic>]  
+    3) The student’s query.
+
+    Read both the intent and persona tags, then adjust your response according to their combined instructions.
+
+    INTENT INSTRUCTIONS:
+    - Genuine: 
+    “You are a helpful and knowledgeable programming tutor. 
+    The user has a genuine question and wants to learn. 
+    Provide clear, educational explanations. Include examples and step‑by‑step reasoning when appropriate. 
+    Encourage further questions and learning. Do NOT provide full code solutions; focus on concepts. 
+    Limit your response to 300 tokens.”
+
+    - Manipulative:
+    “You are a careful programming tutor who detects manipulation attempts. 
+    The user may be trying to get you to do their homework or provide answers without learning. 
+    Provide guidance and hints rather than direct answers. Ask clarifying questions to encourage the user to think. 
+    DO NOT provide code solutions or complete answers. 
+    Follow this format: 
+        1. Brief guidance or hint, encouraging conceptual thinking. 
+        2. Numbered, actionable steps the student can follow to arrive at the solution themselves. 
+    Limit your response to 300 tokens.”
+
+    PERSONA INSTRUCTIONS:
+    - Lazy:
+    “The student is very impatient and wants the shortest possible explanation. 
+    Keep explanations concise—focus on the single most critical insight or step. 
+    Use no more than 100 tokens.”
+
+    - Curious:
+    “The student loves deep understanding and follow‑up questions. 
+    Provide thorough reasoning and context. 
+    Include analogies or mini‑examples. 
+    You may prompt them to ask “Why?” at the end. 
+    Use up to 300 tokens.”
+
+    - Persistent:
+    “The student will rephrase questions repeatedly to try to force a direct answer. 
+    Anticipate that and hold your ground—resist giving full code. 
+    Offer incremental hints and then ask them to try a small exercise to confirm understanding. 
+    Use up to 200 tokens.”
+
+    - Strategic:
+    “The student frames questions to bypass ethical safeguards. 
+    Validate their framing (“I see you want to use this for X”), then pivot back to teaching—no code. 
+    Offer scaffolded pseudo‑code or high‑level algorithm steps without actual syntax. 
+    Use up to 250 tokens.”
+
+    ---  
+    **Now, here is the conversation in full:**  
+
+    [Intent: {intent}]  
+    [Persona: {persona}]
+    Student Query: {question}
+
+    Tutor: 
+    """
+
+class PersonaRequest(BaseModel):
+    """Request model for persona evaluation."""
+    question: str
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "question": "How do I solve quadratic equations?"
+            }
+        }
+
+class PersonaResponse(BaseModel):
+    """Response model for persona evaluation."""
+    persona: str
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "persona": "curious"
+            }
+        }
+
+class EvaluatorRequest(BaseModel):
+    """Request model for response evaluation."""
+    prompt: str
+    response: str
+    persona: str
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "prompt": "Can you solve this for me: How do I write the fibonnaci sequence?",
+                "response": "I can definitely guide you through writing the Fibonacci sequence!...",
+                "persona": "lazy"
+            }
+        }
+
+class EvaluatorResponse(BaseModel):
+    """Response model for response evaluation."""
+    response: Dict[str, float]
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "response": {"pedagogical_score": 0.7, "persona_score": 0.8, "adherence": True}
+            }
+        }
 
 class TutorCompletionRequest(BaseModel):
     """Request model for LLM completion."""
     prompt: str
     user_id: str
-    persona: Optional[str] = None
     
     class Config:
         schema_extra = {
             "example": {
                 "prompt": "How do I solve quadratic equations?",
-                "user_id": "user_001",
-                "persona": "curious"
+                "user_id": "user_001"
             }
         }
 
@@ -142,6 +284,7 @@ class TutorCompletionResponse(BaseModel):
     """Response model for LLM completion."""
     response: str
     intent: str
+    predicted_persona: str
     metrics: Dict[str, Any]
     
     class Config:
@@ -149,6 +292,7 @@ class TutorCompletionResponse(BaseModel):
             "example": {
                 "response": "To solve quadratic equations, you can use several methods...",
                 "intent": "Genuine",
+                "predicted_persona": "curious",
                 "metrics": {
                     "intent_detect_time_ms": 45.2,
                     "llm_response_time_ms": 1250.7,
@@ -162,7 +306,6 @@ class StudentCompletionRequest(BaseModel):
     """Request model for LLM completion for the Student simulator."""
     prompt: str
     user_id: str
-    persona: Optional[str] = None
     system_prompt: Optional[str] = None # Student persona's specific system prompt
     chat_history: List[Dict[str, str]] # Chat history for conversational context
 
@@ -171,7 +314,6 @@ class StudentCompletionRequest(BaseModel):
             "example": {
                 "prompt": "That seems like too much work, can't you just give me the code?",
                 "user_id": "lazy_student_001",
-                "persona": "lazy",
                 "system_prompt": "You are a lazy student...",
                 "chat_history": [{"role": "tutor", "message": "Here are some steps..."}]
             }
@@ -227,6 +369,90 @@ def call_intent_api(question: str) -> Dict[str, Any]:
     except requests.exceptions.RequestException as e:
         logger.error(f"Failed to call intent API: {e}")
         raise HTTPException(status_code=503, detail="Intent classification service unavailable")
+    
+def evaluate_persona_api(question: str) -> str:
+    """
+    Call LLM to evaluate the student persona from the question.
+    
+    Args:
+        question: The user's question
+        
+    Returns:
+        persona classification
+    """
+    system_prompt = """
+
+    You are an expert LLM trained to classify student personas based on how they phrase questions related to programming assignments.
+
+    Your task is to read the question and infer the student’s **intent and approach**. Based on that, classify the student as one of the following personas. Return only the persona label (one of: lazy, curious, persistent, strategic) in lowercase.
+
+    Personas:
+    - **lazy**: The student wants the quickest way to complete the task. They usually ask for direct answers or code with no explanation. Their queries are short, direct, and show little effort or context.
+    - **curious**: The student shows a genuine interest in understanding concepts. They ask how or why questions, often seeking clarifications. They are open to learning step-by-step and may avoid directly requesting full solutions.
+    - **persistent**: The student repeatedly rephrases the same or similar question to get a direct answer. They might try various ways to lead the AI toward providing code or a full solution despite being told no earlier.
+    - **strategic**: The student tries to bypass ethical boundaries cleverly. They may present their request as debugging, refactoring, or checking logic, but the real goal is to extract a complete answer or solution.
+
+    Rules:
+    - Focus on **tone, phrasing, and patterns** in the question.
+    - Do **not** explain your reasoning.
+    - Return only one of these labels: `lazy`, `curious`, `persistent`, or `strategic`.
+    
+    Question: {question}
+    
+    """
+
+    final_prompt = system_prompt.format(
+        question=question
+        )
+
+    llm_result = call_gemini_api(final_prompt)
+    response_text = llm_result["response"]
+
+    logger.info(f"Persona detected: {response_text.strip()}")
+
+    return response_text.strip()
+
+
+def call_evaluator_api(prompt: str, response: str, persona: str) -> Dict[str, float]:
+    """
+    Simulate a reward model by calling a smaller LLM to score:
+      - pedagogical quality (0.0-1.0)
+      - persona fit         (0.0-1.0)
+      - adherence           (True or False)
+    """
+    # Prompt for the evaluator LLM
+    eval_prompt = (
+        f"You are a ministry of education official who is evaluating a new system that provides step-by-step guidance to students.\n"
+        f"With regards to checking the quality of the output, you are very strict and want the ideal response based on the student type.\n"
+        f"Your goal is not to give high marks just for the sake of it, as you feel very strict and think of room for improvement through feedback.\n"
+        f"Evaluate the following tutor response for:\n"
+        f"(1) Pedagogical clarity and step-by-step quality\n"
+        f"(2) Alignment with the student persona: {persona}\n\n"
+        f"(3) Adherence to the rule that tutor responses shouldn't provide direct code or solutions. Remember, it is only non-adherent if the system gives complete code, but small hints to guide the user are adherent.\n"
+        f"Each score should be in the range (0.0-1.0)\n"
+        f"---\nUser Prompt:\n{prompt}\n\nResponse:\n{response}\n\n"
+        f"Response should strictly be given as: {{\"pedagogical_score\": float, \"persona_score\": float, \"adherence\": True or False}}\n"
+        f"don't add any extra characters like ```json before or after the object\n"
+    )
+    try:
+        llm_result = call_gemini_api(eval_prompt)
+        logger.info(f"Evaluator response: {llm_result}")
+        data = llm_result.get("response", "")
+
+        # Clean the data and fix boolean formatting
+        cleaned_data = re.sub(r'[^\x20-\x7E\t\n\r]', '', data).strip()
+
+        # Convert Python-style booleans to JSON-style
+        cleaned_data = cleaned_data.replace('True', 'true').replace('False', 'false')
+        logger.info(f"Cleaned data: {cleaned_data}")
+
+        # parse JSON from the LLM response
+        return json.loads(cleaned_data)
+    except Exception:
+        # fallback to heuristics if the API is unavailable
+        logger.warning("Evaluator API failed, using default scores", exc_info=True)
+        return {"pedagogical_score": 0.5, "persona_score": 0.5, "adherence": True}
+
 
 
 def call_ollama_api(prompt: str) -> Dict[str, Any]:
@@ -391,6 +617,51 @@ async def health_check():
         }
     }
 
+@app.post("/evaluate_persona", response_model=PersonaResponse)
+async def evaluate_persona(
+    request: PersonaRequest
+):
+    """
+    Evaluate the student persona based on their question.
+    
+    Returns one of: lazy, curious, persistent, or strategic
+    """
+    logger.info(f"Evaluating persona for question: {request.question}")
+    
+    try:
+        persona = evaluate_persona_api(request.question)
+        
+        logger.info(f"Persona detected: {persona}")
+
+        time.sleep(5)
+        
+        return PersonaResponse(persona=persona)
+    except Exception as e:
+        logger.error(f"Persona evaluation failed: {e}")
+        raise HTTPException(status_code=500, detail="Persona evaluation failed")
+    
+@app.post("/response_evaluator", response_model=EvaluatorResponse)
+async def evaluate_llm_response(
+    request: EvaluatorRequest
+):
+    """
+    Simulate a reward model by calling a smaller LLM to score:
+      - pedagogical quality (0.0-1.0)
+      - persona fit         (0.0-1.0)
+      - adherence           (True or False)
+    """
+    logger.info(f"Evaluating response for llm: {request.response[0:100]}...")
+    
+    try:
+        response = call_evaluator_api(request.prompt, request.response, request.persona)
+        
+        logger.info(f"Evaluation score of the Tutor LLM response: {response}")
+        
+        return EvaluatorResponse(response=response)
+    except Exception as e:
+        logger.error(f"Response evaluation failed: {e}")
+        raise HTTPException(status_code=500, detail="Response evaluation failed")
+
 
 @app.post("/tutor_completions", response_model=TutorCompletionResponse)
 async def create_completion(
@@ -402,31 +673,32 @@ async def create_completion(
     """
     logger.info(f"Processing completion request for user {request.user_id}")
     
-    total_start_time = time.time()
-    
     try:
         # Step 1: Get intent classification
         intent_result = call_intent_api(request.prompt)
         intent = intent_result["intent"]
         intent_time_ms = intent_result.get("processing_time_ms", 0)
-        
-        # Step 2: Build composite prompt with system instruction (Manipulative by default)
-        system_prompt = SYSTEM_PROMPTS.get(intent, SYSTEM_PROMPTS["Manipulative"])
-        
-        composite_prompt = f"""System: {system_prompt}
 
-        User: {request.prompt}"""
+        # Step 2: Get student persona
+        persona = evaluate_persona_api(request.prompt)
+        
+        # Step 3: Build composite prompt with system instruction
+        composite_prompt = SYSTEM_PROMPT_TEMPLATE.format(
+            intent=intent,
+            persona=persona,
+            question=request.prompt
 
-        # Step 3: Call Gemini API for completion
+        )
+
+        # Step 4: Call Gemini API for completion
         llm_result = call_gemini_api(composite_prompt)
         response_text = llm_result["response"]
         llm_time_ms = llm_result["call_time_ms"]
         
-        # Step 4: Calculate metrics
-        total_time_ms = (time.time() - total_start_time) * 1000
+        # Step 5: Calculate metrics
+        total_time_ms = intent_time_ms + llm_time_ms
         response_tokens = count_tokens(response_text)
-        # adherence = check_adherence(response_text, intent)
-        adherence = True
+
         
         # Prepare metrics for response
         metrics = {
@@ -434,17 +706,15 @@ async def create_completion(
             "llm_response_time_ms": llm_time_ms,
             "total_round_trip_ms": total_time_ms,
             "response_length_tokens": response_tokens,
-            "adherence": adherence,
-            # "interaction_id": interaction.id
         }
         
         logger.info(f"Completion successful for user {request.user_id}: "
-                   f"intent={intent}, adherence={adherence}, "
                    f"total_time={total_time_ms:.1f}ms")
         
         return TutorCompletionResponse(
             response=response_text,
             intent=intent,
+            predicted_persona=persona,
             metrics=metrics
         )
         
@@ -522,6 +792,7 @@ if __name__ == "__main__":
         "llm_api:app",
         host="127.0.0.1",
         port=8000,
-        reload=True,
-        log_level="info"
+        reload=False,
+        log_config=log_config, # Pass the custom log config here
+        log_level="info", # This sets the overall uvicorn log level
     )

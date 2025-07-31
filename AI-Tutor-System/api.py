@@ -32,13 +32,11 @@ def get_conversation(user_id: str):
         messages = []
         for interaction in interactions:
             # Student messages: use prompt, Tutor messages: use response
-            # if interaction.role == "student":
             messages.append({
                 "role": "student",
                 "content": interaction.prompt,
                 "timestamp": interaction.timestamp.isoformat()
             })
-            # elif interaction.role == "tutor":
             messages.append({
                 "role": "tutor",
                 "content": interaction.response,

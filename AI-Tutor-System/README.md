@@ -11,19 +11,29 @@ A comprehensive tutoring system that combines intent classification, LLM-based r
 - **Database Logging**: SQLite-based storage for all interactions and metrics
 - **RESTful APIs**: FastAPI-based services with automatic documentation
 
+
 ## 📁 Project Structure
 
 ```
-my_tutor_system/
-├── intent_api.py            # BERT intent classifier service (port 9000)
-├── llm_api.py               # Aggregator service with Ollama integration (port 8000)
-├── simulator.py             # Virtual user simulator with 4 personas
-├── models.py                # SQLAlchemy database models
-├── database.py              # SQLite session management
-├── metrics.py               # Performance metrics computation
-├── requirements.txt         # Python dependencies
-├── data/                    # Database storage directory (auto-created)
-└── reports/                 # Simulation reports directory (auto-created)
+Ethical-AI-Tutor/
+├── AI-Tutor-System/
+│   ├── intent_api.py         # BERT intent classifier service (port 9000)
+│   ├── llm_api.py            # Aggregator service with Ollama integration (port 8000)
+│   ├── api.py                # Conversation API for frontend (port 8500)
+│   ├── simulator.py          # Virtual user simulator with 4 personas
+│   ├── models.py             # SQLAlchemy database models
+│   ├── database.py           # SQLite session management
+│   ├── metrics.py            # Performance metrics computation
+│   ├── requirements.txt      # Python dependencies
+│   ├── data/                 # Database storage directory (auto-created)
+│   ├── reports/              # Simulation reports directory (auto-created)
+│   └── ...                   # Other backend files
+├── my-tutor-frontend/
+│   ├── src/                  # React frontend source code
+│   ├── public/               # Static assets
+│   ├── package.json          # Frontend dependencies
+│   └── ...                   # Other frontend files
+└── ...
 ```
 
 ## 🛠️ Setup Instructions
@@ -34,11 +44,19 @@ my_tutor_system/
 - Ollama installed and running
 - At least 8GB RAM (for running models)
 
-### 1. Install Dependencies
+
+### 1. Install Backend Dependencies
 
 ```bash
-cd my_tutor_system
+cd AI-Tutor-System
 pip install -r requirements.txt
+```
+
+### 2. Install Frontend Dependencies
+
+```bash
+cd ../my-tutor-frontend
+npm install
 ```
 
 ### 2. Set Up Ollama
@@ -56,20 +74,46 @@ ollama pull llama3
 ollama serve
 ```
 
+
 ### 3. Start the Services
 
-Open multiple terminal windows/tabs:
+You can use the provided batch file to start all backend services and the simulator at once:
 
-**Terminal 1 - Intent Classification API:**
-```bash
-cd my_tutor_system
-python intent_api.py
+```bat
+cd AI-Tutor-System
+start_all_servers.bat
 ```
 
-**Terminal 2 - LLM Aggregator API:**
+Or start each service in a separate terminal:
+
+**Terminal 1 - Intent Classification API (port 9000):**
 ```bash
-cd my_tutor_system
-python llm_api.py
+cd AI-Tutor-System
+python -m uvicorn intent_api:app --host 127.0.0.1 --port 9000 --reload
+```
+
+**Terminal 2 - LLM Aggregator API (port 8000):**
+```bash
+cd AI-Tutor-System
+python -m uvicorn llm_api:app --host 127.0.0.1 --port 8000 --reload
+```
+
+**Terminal 3 - Conversation API (port 8500):**
+```bash
+cd AI-Tutor-System
+python -m uvicorn api:app --host 127.0.0.1 --port 8500 --reload
+```
+
+**Terminal 4 - Simulator:**
+```bash
+cd AI-Tutor-System
+python simulator.py
+```
+
+**Terminal 5 - Frontend (React):**
+```bash
+cd ../my-tutor-frontend
+npm start
 ```
 
 ### 4. Verify Setup
@@ -89,12 +133,13 @@ curl -X POST "http://localhost:8000/completions" \
 
 ## 🎯 Usage
 
+
 ### Running Virtual User Simulation
 
 Execute the complete simulation with all personas:
 
 ```bash
-cd my_tutor_system
+cd AI-Tutor-System
 python simulator.py
 ```
 
@@ -126,9 +171,10 @@ curl -X POST "http://localhost:8000/completions" \
 
 ### Database Operations
 
+
 #### Initialize Database
 ```bash
-cd my_tutor_system
+cd AI-Tutor-System
 python database.py
 ```
 

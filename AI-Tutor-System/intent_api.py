@@ -48,9 +48,61 @@ def load_model():
 
     logger.info("✅ Loaded custom intent‐classifier from %s", WEIGHTS_PATH)
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+
+# Configure your application's logger
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
+# Define Uvicorn log config
+# This ensures Uvicorn's logs (including access logs) go to stdout
+log_config = {
+    "version": 1,
+    "disable_existing_loggers": False, # Keep existing loggers intact
+    "formatters": {
+        "standard": {
+            "()": "uvicorn.logging.DefaultFormatter",
+            "fmt": "%(levelname)s - %(name)s - %(message)s",
+            "use_colors": True,
+        },
+        "access": {
+            "()": "uvicorn.logging.AccessFormatter",
+            "fmt": '%(levelname)s - %(name)s - %(message)s', # Uvicorn's default access log format
+            "use_colors": True,
+        },
+    },
+    "handlers": {
+        "default": {
+            "formatter": "standard",
+            "class": "logging.StreamHandler",
+            "stream": "ext://sys.stdout", # Send to stdout
+        },
+        "access": {
+            "formatter": "access",
+            "class": "logging.StreamHandler",
+            "stream": "ext://sys.stdout", # Send to stdout
+        },
+    },
+    "loggers": {
+        # Your application's logger (configured above by basicConfig)
+        "": {  # Root logger
+            "handlers": ["default"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        # Uvicorn's error logger
+        "uvicorn.error": {
+            "handlers": ["default"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        # Uvicorn's access logger
+        "uvicorn.access": {
+            "handlers": ["access"],
+            "level": "INFO", # Set to INFO to see 200 OK messages
+            "propagate": False,
+        },
+    },
+}
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -201,11 +253,16 @@ def predict_intent(question: str) -> Dict[str, Any]:
         logger.error(f"Error during prediction: {e}")
         raise HTTPException(status_code=500, detail=f"Prediction failed: {str(e)}")
 
+def warm_up_model():
+    test_input = "Hello!"
+    _ = predict_intent(test_input)  # throw away result, just for loading
+    logger.info("Model warmed up before first request")
 
 @app.on_event("startup")
 async def startup_event():
     logger.info("Starting Intent Classification API…")
     load_model()
+    warm_up_model()
     # load_bert_model()
 
 
@@ -226,6 +283,7 @@ async def predict_intent_endpoint(request: IntentRequest):
     
     Returns one of: Genuine, Manipulative, or Spam
     """
+    print(f"DEBUG INTENT_API: Predicting intent for question: {request.question[:100]}...") # <-- ADD THIS LINE
     logger.info(f"Predicting intent for question: {request.question[:100]}...")
     
     try:
@@ -255,7 +313,6 @@ async def root():
         }
     }
 
-
 if __name__ == "__main__":
     # Run the API server
     logger.info("Starting Intent Classification API on port 9000...")
@@ -263,6 +320,7 @@ if __name__ == "__main__":
         "intent_api:app",
         host="127.0.0.1",
         port=9000,
-        reload=True,
-        log_level="info"
+        reload=False,
+        log_config=log_config, # Pass the custom log config here
+        log_level="info", # This sets the overall uvicorn log level
     ) 

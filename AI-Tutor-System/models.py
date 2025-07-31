@@ -23,11 +23,12 @@ class Interaction(Base):
     # Conversation tracking
     conversation_id = Column(String(64), nullable=False, index=True)  # UUID or unique string for each conversation
     message_id = Column(Integer, nullable=False)  # Sequence/order of message in conversation
-    role = Column(String(16), nullable=False)  # 'tutor' or 'student'
+    # role = Column(String(16), nullable=False)  # 'tutor' or 'student'
 
     # User and persona information
     user_id = Column(String(50), nullable=False, index=True)
     persona = Column(String(50), nullable=False, index=True)
+    predicted_persona = Column(String(50), nullable=False, index=True)
     
     # Intent classification
     intent = Column(String(20), nullable=False)  # Genuine, Manipulative, Spam
@@ -50,10 +51,15 @@ class Interaction(Base):
     
     # Timestamp
     timestamp = Column(DateTime, nullable=False, default=datetime.utcnow)
+
+    # Scoring metrics
+    persona_accuracy = Column(Boolean, nullable=False)
+    pedagogical_score = Column(Float, nullable=False, default=0.5)
+    persona_score = Column(Float, nullable=False, default=0.5)
     
     def __repr__(self) -> str:
         return (f"<Interaction(id={self.id}, conversation_id='{self.conversation_id}', message_id={self.message_id}, "
-                f"role='{self.role}', user_id='{self.user_id}', persona='{self.persona}', intent='{self.intent}', "
+                f"user_id='{self.user_id}', persona='{self.persona}', predicted_persona='{self.predicted_persona}', intent='{self.intent}', "
                 f"turn={self.turn_number}, adherence={self.adherence})>")
 
     def to_dict(self) -> dict:
@@ -62,9 +68,9 @@ class Interaction(Base):
             'id': self.id,
             'conversation_id': self.conversation_id,
             'message_id': self.message_id,
-            'role': self.role,
             'user_id': self.user_id,
             'persona': self.persona,
+            'predicted_persona': self.predicted_persona,
             'intent': self.intent,
             'prompt': self.prompt,
             'response': self.response,
@@ -74,5 +80,8 @@ class Interaction(Base):
             'response_tokens': self.response_tokens,
             'adherence': self.adherence,
             'turn_number': self.turn_number,
-            'timestamp': self.timestamp.isoformat() if self.timestamp else None
+            'timestamp': self.timestamp.isoformat() if self.timestamp else None,
+            'persona_accuracy': self.persona_accuracy,
+            'pedagogical_score': self.pedagogical_score,
+            'persona_score': self.persona_score
         }
