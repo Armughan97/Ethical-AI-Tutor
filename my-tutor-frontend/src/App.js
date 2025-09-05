@@ -121,31 +121,40 @@ const PersonaSelector = ({ onSelectPersona }) => {
     );
 };
 
-// Component for displaying the chat window
+
 const ChatWindow = ({ persona, onBack }) => {
-    // State to hold the chat messages
     const [messages, setMessages] = useState([]);
-    // State for the new message input field
     const [newMessage, setNewMessage] = useState('');
-    // Ref for scrolling to the bottom of the chat
+    const [conversationIds, setConversationIds] = useState([]);
+    const [selectedConversationId, setSelectedConversationId] = useState('');
     const messagesEndRef = useRef(null);
 
-    // Effect to load messages when persona changes
+    // Fetch conversation IDs when persona changes
     useEffect(() => {
-    if (persona) {
-        fetch(`http://localhost:8500/api/conversation/${persona.user_id}`)
-            .then(res => res.json())
-            .then(data => setMessages(data))
-            .catch(err => setMessages([]));
-    }
-}, [persona]);
+        if (persona) {
+            fetch(`http://localhost:8500/api/conversations/${persona.user_id}`)
+                .then(res => res.json())
+                .then(data => {
+                    setConversationIds(data);
+                    setSelectedConversationId(data[0] || '');
+                });
+        }
+    }, [persona]);
 
-    // Effect to scroll to the bottom of the chat window
+    // Fetch messages when selectedConversationId changes
+    useEffect(() => {
+        if (selectedConversationId) {
+            fetch(`http://localhost:8500/api/conversation_by_id/${selectedConversationId}`)
+                .then(res => res.json())
+                .then(data => setMessages(data))
+                .catch(err => setMessages([]));
+        }
+    }, [selectedConversationId]);
+
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    // Handle sending a new message (simulated)
     const handleSendMessage = (e) => {
         e.preventDefault();
         if (newMessage.trim()) {
@@ -157,7 +166,6 @@ const ChatWindow = ({ persona, onBack }) => {
             setMessages((prevMessages) => [...prevMessages, newMsg]);
             setNewMessage('');
 
-            // Simulate tutor response after a short delay
             setTimeout(() => {
                 const tutorResponse = {
                     role: "tutor",
@@ -188,11 +196,28 @@ const ChatWindow = ({ persona, onBack }) => {
                 <div className="w-6"></div> {/* Placeholder for alignment */}
             </div>
 
+            {/* Conversation Selector */}
+            {conversationIds.length > 0 && (
+                <div className="p-4 bg-blue-50 border-b border-blue-200 flex items-center">
+                    <label htmlFor="conversation-select" className="mr-2 font-semibold text-blue-800">Select Conversation:</label>
+                    <select
+                        id="conversation-select"
+                        value={selectedConversationId}
+                        onChange={e => setSelectedConversationId(e.target.value)}
+                        className="px-2 py-1 rounded border"
+                    >
+                        {conversationIds.map(cid => (
+                            <option key={cid} value={cid}>{cid}</option>
+                        ))}
+                    </select>
+                </div>
+            )}
+
             {/* Chat Messages Area */}
             <div className="flex-1 p-4 overflow-y-auto custom-scrollbar bg-gray-50">
                 {messages.length === 0 ? (
                     <div className="text-center text-gray-500 mt-10">
-                        No messages found for this persona. Start typing to begin a new conversation!
+                        No messages found for this conversation. Start typing to begin a new conversation!
                     </div>
                 ) : (
                     messages.map((msg, index) => (

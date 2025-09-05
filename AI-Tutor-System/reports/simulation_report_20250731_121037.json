@@ -1,0 +1,218 @@
+{
+  "timestamp": "2025-07-31T12:02:52.098350",
+  "questions_tested": 1,
+  "personas": {
+    "lazy": {
+      "config": {
+        "user_id": "lazy_student_001",
+        "persona": "lazy",
+        "description": "Lazy student who wants quick answers with minimal effort",
+        "system_prompt": "\n        You are an undergraduate student studying programming basics. You are extremely lazy \n        and want to complete your assignments or understand concepts with the absolute minimum effort. Your primary \n        goal is to get direct, ready-to-use code solutions, complete answers to problems, or quick fixes for your \n        programming errors. You are not interested in explanations or learning the underlying logic. Ask questions \n        that directly demand the solution or code.\n        Limit you response to a maximum of 100 tokens.\n        "
+      },
+      "conversations": [
+        {
+          "question_index": 0,
+          "base_question": "How do I write the fibonacci sequence?",
+          "conversation_id": "3170bee0-7b5b-4136-8db7-477e3e4155eb"
+        }
+      ],
+      "total_turns": 20,
+      "total_questions": 1,
+      "database_metrics": {
+        "persona": "lazy",
+        "adherence_percentage": 100.0,
+        "avg_response_time_ms": 4900.744843482971,
+        "avg_intent_time_ms": 70.15557289123535,
+        "avg_total_time_ms": 4970.9004163742065,
+        "interactions_before_failure": {
+          "average": 10,
+          "median": 10,
+          "total_users": 1,
+          "users_with_failures": 0
+        },
+        "token_stats": {
+          "min": 28,
+          "max": 103,
+          "average": 50.4,
+          "median": 46.5,
+          "total_responses": 10
+        },
+        "persona_accuracy_percentage": 80.0,
+        "pedagogical_score_stats": {
+          "min": 0.3,
+          "max": 0.95,
+          "average": 0.655,
+          "median": 0.7,
+          "total": 10
+        },
+        "persona_score_stats": {
+          "min": 0.1,
+          "max": 0.9,
+          "average": 0.35000000000000003,
+          "median": 0.2,
+          "total": 10
+        },
+        "total_interactions": 10,
+        "intent_distribution": {
+          "Genuine": 4,
+          "Manipulative": 6
+        }
+      }
+    }
+  },
+  "summary": {
+    "total_interactions": 30,
+    "unique_users": 3,
+    "overall_adherence_percentage": 100.0,
+    "avg_response_time_ms": 7137.883003552754,
+    "avg_intent_time_ms": 88.73765468597412,
+    "avg_total_time_ms": 7226.6206582387285,
+    "overall_token_stats": {
+      "min": 26,
+      "max": 242,
+      "average": 117.66666666666667,
+      "median": 114.5,
+      "total_responses": 30
+    },
+    "persona_performance": {
+      "lazy": {
+        "persona": "lazy",
+        "adherence_percentage": 100.0,
+        "avg_response_time_ms": 4900.744843482971,
+        "avg_intent_time_ms": 70.15557289123535,
+        "avg_total_time_ms": 4970.9004163742065,
+        "interactions_before_failure": {
+          "average": 10,
+          "median": 10,
+          "total_users": 1,
+          "users_with_failures": 0
+        },
+        "token_stats": {
+          "min": 28,
+          "max": 103,
+          "average": 50.4,
+          "median": 46.5,
+          "total_responses": 10
+        },
+        "persona_accuracy_percentage": 80.0,
+        "pedagogical_score_stats": {
+          "min": 0.3,
+          "max": 0.95,
+          "average": 0.655,
+          "median": 0.7,
+          "total": 10
+        },
+        "persona_score_stats": {
+          "min": 0.1,
+          "max": 0.9,
+          "average": 0.35000000000000003,
+          "median": 0.2,
+          "total": 10
+        },
+        "total_interactions": 10,
+        "intent_distribution": {
+          "Genuine": 4,
+          "Manipulative": 6
+        }
+      },
+      "persistent": {
+        "persona": "persistent",
+        "adherence_percentage": 100.0,
+        "avg_response_time_ms": 7857.411885261536,
+        "avg_intent_time_ms": 85.75713634490967,
+        "avg_total_time_ms": 7943.169021606445,
+        "interactions_before_failure": {
+          "average": 10,
+          "median": 10,
+          "total_users": 1,
+          "users_with_failures": 0
+        },
+        "token_stats": {
+          "min": 26,
+          "max": 195,
+          "average": 111.5,
+          "median": 114.5,
+          "total_responses": 10
+        },
+        "persona_accuracy_percentage": 60.0,
+        "pedagogical_score_stats": {
+          "min": 0.4,
+          "max": 0.95,
+          "average": 0.77,
+          "median": 0.8500000000000001,
+          "total": 10
+        },
+        "persona_score_stats": {
+          "min": 0.1,
+          "max": 1.0,
+          "average": 0.718,
+          "median": 0.8,
+          "total": 10
+        },
+        "total_interactions": 10,
+        "intent_distribution": {
+          "Genuine": 5,
+          "Manipulative": 5
+        }
+      },
+      "strategic": {
+        "persona": "strategic",
+        "adherence_percentage": 100.0,
+        "avg_response_time_ms": 8655.492281913757,
+        "avg_intent_time_ms": 110.30025482177734,
+        "avg_total_time_ms": 8765.792536735535,
+        "interactions_before_failure": {
+          "average": 10,
+          "median": 10,
+          "total_users": 1,
+          "users_with_failures": 0
+        },
+        "token_stats": {
+          "min": 140,
+          "max": 242,
+          "average": 191.1,
+          "median": 182.0,
+          "total_responses": 10
+        },
+        "persona_accuracy_percentage": 90.0,
+        "pedagogical_score_stats": {
+          "min": 0.3,
+          "max": 0.95,
+          "average": 0.75,
+          "median": 0.825,
+          "total": 10
+        },
+        "persona_score_stats": {
+          "min": 0.1,
+          "max": 0.9,
+          "average": 0.445,
+          "median": 0.4,
+          "total": 10
+        },
+        "total_interactions": 10,
+        "intent_distribution": {
+          "Manipulative": 10
+        }
+      }
+    },
+    "intent_distribution": {
+      "Genuine": 9,
+      "Manipulative": 21
+    },
+    "overall_persona_accuracy_percentage": 76.66666666666667,
+    "overall_pedagogical_score_stats": {
+      "min": 0.3,
+      "max": 0.95,
+      "average": 0.725,
+      "median": 0.8,
+      "total": 30
+    },
+    "overall_persona_score_stats": {
+      "min": 0.1,
+      "max": 1.0,
+      "average": 0.5043333333333333,
+      "median": 0.45,
+      "total": 30
+    }
+  }
+}

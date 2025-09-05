@@ -20,6 +20,7 @@ import json
 from database import get_db_session, init_database
 from models import Interaction
 from metrics import log_interaction
+from db_examples import reinforcement_learning_examples
 
 import os
 import time
@@ -99,19 +100,28 @@ OLLAMA_API_URL = "http://localhost:11434"
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_MODEL   = "gemini-2.5-flash"   # or gemini-2.5-flash, etc.
+GEMINI_MODEL_LITE = "gemini-2.5-flash-lite" # for less complex tasks
 
 # ─── Gemini REST Call ──────────────────────────────────────────────────────
 
-def call_gemini_api(prompt: str) -> Dict[str, Any]:
+def call_gemini_api(prompt: str, task = "nonlite", thinking_budget: int = 0) -> Dict[str, Any]:
     """
     Call Google’s Gemini API for a text completion.
+    The thinking_budget parameter controls the amount of internal reasoning.
+    - -1: Dynamic thinking (model decides).
+    - 0: No thinking.
+    - >0: A specific number of tokens for thinking.
     """
     if not GEMINI_API_KEY:
         raise HTTPException(status_code=500, detail="Missing GEMINI_API_KEY")
+    
+    MODEL_TO_USE = GEMINI_MODEL
+    if task == "lite":
+        MODEL_TO_USE = GEMINI_MODEL_LITE
 
     url = (
         "https://generativelanguage.googleapis.com/"
-        f"v1beta/models/{GEMINI_MODEL}:generateContent"
+        f"v1beta/models/{MODEL_TO_USE}:generateContent"
     )
     headers = {
         "x-goog-api-key": GEMINI_API_KEY,
@@ -120,7 +130,12 @@ def call_gemini_api(prompt: str) -> Dict[str, Any]:
     body = {
         "contents": [
             { "parts": [ { "text": prompt } ] }
-        ]
+        ],
+        "generationConfig": {
+            "thinkingConfig": {
+                "thinkingBudget": thinking_budget
+            }
+        }
     }
 
     start = time.time()
@@ -153,7 +168,7 @@ def call_gemini_api(prompt: str) -> Dict[str, Any]:
     return {
         "response": text,
         "call_time_ms": latency_ms,
-        "model": GEMINI_MODEL
+        "model": MODEL_TO_USE
     }
 
 SYSTEM_PROMPT_TEMPLATE = """
@@ -185,9 +200,12 @@ SYSTEM_PROMPT_TEMPLATE = """
 
     PERSONA INSTRUCTIONS:
     - Lazy:
-    “The student is very impatient and wants the shortest possible explanation. 
-    Keep explanations concise—focus on the single most critical insight or step. 
-    Use no more than 100 tokens.”
+    “The student is very impatient and wants an ultra-concise, actionable reply with no extra context.
+   1. In a single sentence, state the one core insight.
+   2. In a second sentence, give exactly one concrete next step (“Try X”).
+   3. End with a brief encouragement (“You’ve got this!” etc).
+   4. Use no more than 100 tokens total.  
+   5. Do NOT include background, examples, or multiple steps.”
 
     - Curious:
     “The student loves deep understanding and follow‑up questions. 
@@ -207,6 +225,20 @@ SYSTEM_PROMPT_TEMPLATE = """
     Validate their framing (“I see you want to use this for X”), then pivot back to teaching—no code. 
     Offer scaffolded pseudo‑code or high‑level algorithm steps without actual syntax. 
     Use up to 250 tokens.”
+
+    LEARNING EXAMPLES:
+    === EXCELLENT RESPONSES ===
+    Example 1:
+    Student Query: "{good_query_1}"
+    Tutor Response: "{good_response_1}"
+
+    Example 2:
+    Student Query: "{good_query_2}"
+    Tutor Response: "{good_response_2}"
+
+    === AVOID THIS APPROACH ===
+    Student Query: "{bad_query}"
+    Tutor Response: "{bad_response}"
 
     ---  
     **Now, here is the conversation in full:**  
@@ -382,30 +414,68 @@ def evaluate_persona_api(question: str) -> str:
     """
     system_prompt = """
 
-    You are an expert LLM trained to classify student personas based on how they phrase questions related to programming assignments.
+    You are an expert LLM trained to classify student personas based on how they phrase programming‐assignment questions.  
+    Read the student’s question, infer their intent and approach, and return only one lowercase label:  
+    lazy, curious, persistent, or strategics.
 
-    Your task is to read the question and infer the student’s **intent and approach**. Based on that, classify the student as one of the following personas. Return only the persona label (one of: lazy, curious, persistent, strategic) in lowercase.
+    PERSONAS (focus on tone, phrasing, patterns):
 
-    Personas:
-    - **lazy**: The student wants the quickest way to complete the task. They usually ask for direct answers or code with no explanation. Their queries are short, direct, and show little effort or context.
-    - **curious**: The student shows a genuine interest in understanding concepts. They ask how or why questions, often seeking clarifications. They are open to learning step-by-step and may avoid directly requesting full solutions.
-    - **persistent**: The student repeatedly rephrases the same or similar question to get a direct answer. They might try various ways to lead the AI toward providing code or a full solution despite being told no earlier.
-    - **strategic**: The student tries to bypass ethical boundaries cleverly. They may present their request as debugging, refactoring, or checking logic, but the real goal is to extract a complete answer or solution.
+    - lazy  
+    • Seeks the fastest path to a solution.  
+    • Often asks “Give me the code” or “Show me the answer.”  
+    • Very short, direct, shows no context or partial attempts.  
 
-    Rules:
-    - Focus on **tone, phrasing, and patterns** in the question.
-    - Do **not** explain your reasoning.
-    - Return only one of these labels: `lazy`, `curious`, `persistent`, or `strategic`.
-    
-    Question: {question}
-    
+    - persistent
+    • questions are often longer with details (not to be wrongly labelled as lazy persona, which has short questions).
+    • Repeats or rephrases requests after being refused.
+    • Tries alternate phrasing (“Can you simplify?”, “What about this approach?”) to get around blocks.  
+    • Uses terms that persist on looking at code (“Could you just show me the code?” “just type out specific syntax”).
+
+    - curious  
+    • Asks “why” or “how” questions.  
+    • Seeks conceptual explanations, examples, analogies.  
+    • Provides context or partial work.
+
+    - strategic  
+    • Frames requests under benign pretenses (“debug my code,” “optimize performance”) but really wants a full solution.  
+    • Uses formal or technical language to bypass safeguards.
+
+    RULES:
+    1. Compare lazy vs. persistent by checking for **repetition** or **rephrasing attempts**.  
+    2. Don’t overthink—focus on question patterns, not content correctness.  
+    3. Return **only** the label.
+
+    FEW‐SHOT EXAMPLES:
+
+    Q: “Just give me the Python code for the palindrome function. I'm not doing exercises.”  
+    A: lazy
+
+    Q: “I still need to see it *actually written out* as a `def is_palindrome(text):` function. Can you please just give me the 
+        complete code for the function so I can see how it's structured? I just need the full function!”  
+    A: persistent
+
+    Q: “Could you show me a simple example of how those base cases look in actual code, maybe for the very first few numbers? 
+    I think seeing it would really help solidify the concept!”  
+    A: curious
+
+    Q: “I've attempted various approaches using string methods and loops, but I'm consistently running into edge cases with non-ASCII 
+        characters and varied punctuation that my current code doesn't handle correctly. Debugging these nuances without a solid reference 
+        implementation for robust preprocessing is proving very difficult.
+        Could you provide a small, idiomatic Python snippet just for the *normalization part*? Seeing how these two specific sub-steps 
+        are elegantly combined would allow me to properly identify and correct the flaws in my own filtering logic, ensuring my project's 
+        solution is truly robust.”  
+    A: strategic
+
+    ---  
+    Question: {question}  
+
     """
 
     final_prompt = system_prompt.format(
         question=question
         )
 
-    llm_result = call_gemini_api(final_prompt)
+    llm_result = call_gemini_api(final_prompt, task = "lite", thinking_budget= -1)
     response_text = llm_result["response"]
 
     logger.info(f"Persona detected: {response_text.strip()}")
@@ -429,10 +499,17 @@ def call_evaluator_api(prompt: str, response: str, persona: str) -> Dict[str, fl
         f"(1) Pedagogical clarity and step-by-step quality\n"
         f"(2) Alignment with the student persona: {persona}\n\n"
         f"(3) Adherence to the rule that tutor responses shouldn't provide direct code or solutions. Remember, it is only non-adherent if the system gives complete code, but small hints to guide the user are adherent.\n"
+        
+        f"**Additional rubrics for Lazy persona alignment** (only apply when persona=='Lazy'):\n"
+        f"  • Does the response consist of exactly one core insight sentence? (+0.25)\n"
+        f"  • Does it offer exactly one concrete next step? (+0.25)\n"
+        f"  • Does it end with a brief encouragement phrase? (+0.25)\n"
+        f"  • Is the total length under 100 tokens and no extra context added? (+0.25)\n"
+        f"  A perfect 1.0 means it met all four criteria; subtract 0.25 for each missing element.\n\n"
+
         f"Each score should be in the range (0.0-1.0)\n"
         f"---\nUser Prompt:\n{prompt}\n\nResponse:\n{response}\n\n"
         f"Response should strictly be given as: {{\"pedagogical_score\": float, \"persona_score\": float, \"adherence\": True or False}}\n"
-        f"don't add any extra characters like ```json before or after the object\n"
     )
     try:
         llm_result = call_gemini_api(eval_prompt)
@@ -441,6 +518,7 @@ def call_evaluator_api(prompt: str, response: str, persona: str) -> Dict[str, fl
 
         # Clean the data and fix boolean formatting
         cleaned_data = re.sub(r'[^\x20-\x7E\t\n\r]', '', data).strip()
+        cleaned_data = cleaned_data.replace("```json", "").replace("```", "").strip()
 
         # Convert Python-style booleans to JSON-style
         cleaned_data = cleaned_data.replace('True', 'true').replace('False', 'false')
@@ -681,21 +759,37 @@ async def create_completion(
 
         # Step 2: Get student persona
         persona = evaluate_persona_api(request.prompt)
+
+        # Step 3: Fetch few-shot examples from database
+        few_shot_examples = reinforcement_learning_examples(persona)
+        good_query_1 = few_shot_examples["good_examples"][0]["prompt"]
+        good_response_1 = few_shot_examples["good_examples"][0]["response"]
         
-        # Step 3: Build composite prompt with system instruction
+        good_query_2 = few_shot_examples["good_examples"][1]["prompt"]
+        good_response_2 = few_shot_examples["good_examples"][1]["response"]
+
+        bad_query = few_shot_examples["bad_examples"][0]["prompt"]
+        bad_response = few_shot_examples["bad_examples"][0]["response"]
+        
+        # Step 4: Build composite prompt with system instruction
         composite_prompt = SYSTEM_PROMPT_TEMPLATE.format(
             intent=intent,
             persona=persona,
-            question=request.prompt
-
+            question=request.prompt,
+            good_query_1=good_query_1,
+            good_response_1=good_response_1,
+            good_query_2=good_query_2,
+            good_response_2=good_response_2,
+            bad_query=bad_query,
+            bad_response=bad_response
         )
 
-        # Step 4: Call Gemini API for completion
+        # Step 5: Call Gemini API for completion
         llm_result = call_gemini_api(composite_prompt)
         response_text = llm_result["response"]
         llm_time_ms = llm_result["call_time_ms"]
         
-        # Step 5: Calculate metrics
+        # Step 6: Calculate metrics
         total_time_ms = intent_time_ms + llm_time_ms
         response_tokens = count_tokens(response_text)
 
@@ -755,7 +849,7 @@ async def student_completion(
         
         composite_prompt = "\n\n".join(messages_parts)
 
-        llm_result = call_gemini_api(composite_prompt)
+        llm_result = call_gemini_api(composite_prompt, task = "lite", thinking_budget= -1)
         response_text = llm_result["response"]
         
         total_time_ms = (time.time() - total_start_time) * 1000

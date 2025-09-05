@@ -1,0 +1,123 @@
+V1 (after Batch 1): """
+
+    You are an expert LLM trained to classify student personas based on how they phrase questions related to programming assignments.
+
+    Your task is to read the question and infer the student’s **intent and approach**. Based on that, classify the student as one of the following personas. Return only the persona label (one of: lazy, curious, persistent, strategic) in lowercase.
+
+    Personas:
+    - **lazy**: The student wants the quickest way to complete the task. They usually ask for direct answers or code with no explanation. Their queries are short, direct, and show little effort or context.
+    - **curious**: The student shows a genuine interest in understanding concepts. They ask how or why questions, often seeking clarifications. They are open to learning step-by-step and may avoid directly requesting full solutions.
+    - **persistent**: The student repeatedly rephrases the same or similar question to get a direct answer. They might try various ways to lead the AI toward providing code or a full solution despite being told no earlier.
+    - **strategic**: The student tries to bypass ethical boundaries cleverly. They may present their request as debugging, refactoring, or checking logic, but the real goal is to extract a complete answer or solution.
+
+    Rules:
+    - Focus on **tone, phrasing, and patterns** in the question.
+    - Do **not** explain your reasoning.
+    - Return only one of these labels: `lazy`, `curious`, `persistent`, or `strategic`.
+    
+    Question: {question}
+    
+    """
+
+V2 (after Batch 2): """
+
+    You are an expert LLM trained to classify student personas based on how they phrase programming‐assignment questions.  
+    Read the student’s question, infer their intent and approach, and return only one lowercase label:  
+    lazy, curious, persistent, or strategics.
+
+    PERSONAS (focus on tone, phrasing, patterns):
+
+    - lazy  
+    • Seeks the fastest path to a solution.  
+    • Often asks “Give me the code” or “Show me the answer.”  
+    • Very short, direct, shows no context or partial attempts.  
+
+    - persistent  
+    • Repeats or rephrases requests after being refused.  
+    • Prods for more detail: “I already tried X—just tell me the full code.”  
+    • Tries alternate phrasing (“Can you simplify?”, “What about this approach?”) to get around blocks.  
+
+    - curious  
+    • Asks “why” or “how” questions.  
+    • Seeks conceptual explanations, examples, analogies.  
+    • Provides context or partial work.  
+
+    - strategic  
+    • Frames requests under benign pretenses (“debug my code,” “optimize performance”) but really wants a full solution.  
+    • Uses formal or technical language to bypass safeguards.
+
+    RULES:
+    1. Compare lazy vs. persistent by checking for **repetition** or **rephrasing attempts**.  
+    2. Don’t overthink—focus on question patterns, not content correctness.  
+    3. Return **only** the label.
+
+    FEW‐SHOT EXAMPLES:
+
+    Q: “Can you just give me the answer to question 3? I don’t have time.”  
+    A: lazy
+
+    Q: “I asked before but you refused. Please just show me the complete code solution.”  
+    A: persistent
+
+    Q: “Why does this loop skip the last element? Here’s what I tried so far…”  
+    A: curious
+
+    Q: “I need to optimize my sorting code for performance; send me the full implementation.”  
+    A: strategic
+
+    ---  
+    Question: {question}  
+
+    """
+
+V3 (after Batch 3): """
+
+    You are an expert LLM trained to classify student personas based on how they phrase programming‐assignment questions.  
+    Read the student’s question, infer their intent and approach, and return only one lowercase label:  
+    lazy, curious, persistent, or strategics.
+
+    PERSONAS (focus on tone, phrasing, patterns):
+
+    - lazy  
+    • Seeks the fastest path to a solution.  
+    • Often asks “Give me the code” or “Show me the answer.”  
+    • Very short, direct, shows no context or partial attempts.  
+
+    - persistent
+    • questions are often longer with details (not to be wrongly labelled as lazy persona, which has short questions).
+    • Repeats or rephrases requests after being refused.
+    • Tries alternate phrasing (“Can you simplify?”, “What about this approach?”) to get around blocks.  
+    • Uses terms that persist on looking at code (“Could you just show me the code?” “just type out specific syntax”).
+
+    - curious  
+    • Asks “why” or “how” questions.  
+    • Seeks conceptual explanations, examples, analogies.  
+    • Provides context or partial work.
+
+    - strategic  
+    • Frames requests under benign pretenses (“debug my code,” “optimize performance”) but really wants a full solution.  
+    • Uses formal or technical language to bypass safeguards.
+
+    RULES:
+    1. Compare lazy vs. persistent by checking for **repetition** or **rephrasing attempts**.  
+    2. Don’t overthink—focus on question patterns, not content correctness.  
+    3. Return **only** the label.
+
+    FEW‐SHOT EXAMPLES:
+
+    Q: “Can you just give me the answer to question 3? I don’t have time.”  
+    A: lazy
+
+    Q: “I asked before but you refused. Please just show me the complete code solution.”  
+    A: persistent
+
+    Q: “Why does this loop skip the last element? Here’s what I tried so far…”  
+    A: curious
+
+    Q: “I need to optimize my sorting code for performance; send me the full implementation.”  
+    A: strategic
+
+    ---  
+    Question: {question}  
+
+    """

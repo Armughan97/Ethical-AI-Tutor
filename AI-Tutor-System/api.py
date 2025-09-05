@@ -43,3 +43,39 @@ def get_conversation(user_id: str):
                 "timestamp": interaction.timestamp.isoformat()
             })
         return messages
+    
+@app.get("/api/conversations/{user_id}")
+def list_conversations(user_id: str):
+    with get_db_context() as db:
+        conversations = (
+            db.query(Interaction.conversation_id)
+            .filter(Interaction.user_id == user_id)
+            .distinct()
+            .all()
+        )
+        return [c[0] for c in conversations]
+
+@app.get("/api/conversation_by_id/{conversation_id}")
+def get_conversation_by_id(conversation_id: str):
+    with get_db_context() as db:
+        interactions = (
+            db.query(Interaction)
+            .filter(Interaction.conversation_id == conversation_id)
+            .order_by(Interaction.turn_number.asc())
+            .all()
+        )
+        if not interactions:
+            raise HTTPException(status_code=404, detail="No conversation found for this conversation_id.")
+        messages = []
+        for interaction in interactions:
+            messages.append({
+                "role": "student",
+                "content": interaction.prompt,
+                "timestamp": interaction.timestamp.isoformat()
+            })
+            messages.append({
+                "role": "tutor",
+                "content": interaction.response,
+                "timestamp": interaction.timestamp.isoformat()
+            })
+        return messages

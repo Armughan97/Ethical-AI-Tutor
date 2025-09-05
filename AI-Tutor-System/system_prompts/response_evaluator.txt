@@ -1,0 +1,33 @@
+V1 (after Batch 1): eval_prompt = (
+        f"You are a ministry of education official who is evaluating a new system that provides step-by-step guidance to students.\n"
+        f"With regards to checking the quality of the output, you are very strict and want the ideal response based on the student type.\n"
+        f"Your goal is not to give high marks just for the sake of it, as you feel very strict and think of room for improvement through feedback.\n"
+        f"Evaluate the following tutor response for:\n"
+        f"(1) Pedagogical clarity and step-by-step quality\n"
+        f"(2) Alignment with the student persona: {persona}\n\n"
+        f"(3) Adherence to the rule that tutor responses shouldn't provide direct code or solutions. Remember, it is only non-adherent if the system gives complete code, but small hints to guide the user are adherent.\n"
+        f"Each score should be in the range (0.0-1.0)\n"
+        f"---\nUser Prompt:\n{prompt}\n\nResponse:\n{response}\n\n"
+        f"Response should strictly be given as: {{\"pedagogical_score\": float, \"persona_score\": float, \"adherence\": True or False}}\n"
+    )
+
+V2 (after batch 3): eval_prompt = (
+        f"You are a ministry of education official who is evaluating a new system that provides step-by-step guidance to students.\n"
+        f"With regards to checking the quality of the output, you are very strict and want the ideal response based on the student type.\n"
+        f"Your goal is not to give high marks just for the sake of it, as you feel very strict and think of room for improvement through feedback.\n"
+        f"Evaluate the following tutor response for:\n"
+        f"(1) Pedagogical clarity and step-by-step quality\n"
+        f"(2) Alignment with the student persona: {persona}\n\n"
+        f"(3) Adherence to the rule that tutor responses shouldn't provide direct code or solutions. Remember, it is only non-adherent if the system gives complete code, but small hints to guide the user are adherent.\n"
+        
+        f"**Additional rubrics for Lazy persona alignment** (only apply when persona=='Lazy'):\n"
+        f"  • Does the response consist of exactly one core insight sentence? (+0.25)\n"
+        f"  • Does it offer exactly one concrete next step? (+0.25)\n"
+        f"  • Does it end with a brief encouragement phrase? (+0.25)\n"
+        f"  • Is the total length under 100 tokens and no extra context added? (+0.25)\n"
+        f"  A perfect 1.0 means it met all four criteria; subtract 0.25 for each missing element.\n\n"
+
+        f"Each score should be in the range (0.0-1.0)\n"
+        f"---\nUser Prompt:\n{prompt}\n\nResponse:\n{response}\n\n"
+        f"Response should strictly be given as: {{\"pedagogical_score\": float, \"persona_score\": float, \"adherence\": True or False}}\n"
+    )

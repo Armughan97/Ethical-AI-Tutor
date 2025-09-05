@@ -1,0 +1,3 @@
+persona_accuracy initially: 60%
+persona_accuracy after prompt improvement: 90%
+

@@ -140,6 +140,8 @@ def get_adherence_percentage(
 def get_score_stats(
     db: Session,
     score_type: str = "pedagogical",
+    id_start: int = 0,
+    id_end: int = 40,
     user_id: Optional[str] = None,
     persona: Optional[str] = None
 ) -> dict:
@@ -154,17 +156,21 @@ def get_score_stats(
         raise ValueError("score_type must be 'pedagogical' or 'persona'")
     query = db.query(column)
     if user_id:
-        query = query.filter(Interaction.user_id == user_id)
-    if persona:
-        query = query.filter(Interaction.persona == persona)
+        query = query.filter(Interaction.user_id == user_id, 
+                             Interaction.id >= id_start, Interaction.id <= id_end, Interaction.persona_accuracy == True)
+    elif persona:
+        query = query.filter(Interaction.predicted_persona == persona, 
+                             Interaction.id >= id_start, Interaction.id <= id_end, Interaction.persona_accuracy == True)
+    else:
+        query = query.filter(Interaction.id >= id_start, Interaction.id <= id_end, Interaction.persona_accuracy == True)
     scores = [row[0] for row in query.all()]
     if not scores:
         return {"min": 0.0, "max": 0.0, "average": 0.0, "median": 0.0, "total": 0}
     return {
         "min": min(scores),
         "max": max(scores),
-        "average": mean(scores),
-        "median": median(scores),
+        "average": round(mean(scores),2),
+        "median": round(median(scores),2),
         "total": len(scores)
     }
 
@@ -388,6 +394,53 @@ def export_metrics_csv(db: Session, output_path: str) -> str:
         logger.error(f"Failed to export metrics CSV: {e}")
         raise
 
+
+def get_batch_score_stats(
+    db: Session,
+    personas: List[str],
+    id_start: int,
+    id_end: int
+) -> Dict[str, Any]:
+    """
+    Get pedagogical and persona score stats for a batch (by id range), per persona and overall.
+    """
+    batch_stats = {}
+
+    # Per-persona stats
+    for persona in personas:
+        batch_stats[persona] = {
+            "pedagogical_score": get_score_stats(
+                db,
+                score_type="pedagogical",
+                id_start=id_start,
+                id_end=id_end,
+                persona=persona
+            ),
+            "persona_score": get_score_stats(
+                db,
+                score_type="persona",
+                id_start=id_start,
+                id_end=id_end,
+                persona=persona
+            )
+        }
+
+    # Overall stats (all personas)
+    batch_stats["overall"] = {
+        "pedagogical_score": get_score_stats(
+            db,
+            score_type="pedagogical",
+            id_start=id_start,
+            id_end=id_end
+        ),
+        "persona_score": get_score_stats(
+            db,
+            score_type="persona",
+            id_start=id_start,
+            id_end=id_end
+        )
+    }
+    return batch_stats
 
 def get_system_overview(db: Session) -> Dict[str, Any]:
     """
